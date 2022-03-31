@@ -21,4 +21,14 @@ public class MedicalService implements IMedicalService {
     public void save(MedicalDeclaration medicalDeclaration) {
         iMedicalRepository.save(medicalDeclaration);
     }
+
+    @Override
+    public MedicalDeclaration findById(Integer id) {
+        return iMedicalRepository.findById(id);
+    }
+
+    @Override
+    public void update(MedicalDeclaration medicalDeclaration) {
+        iMedicalRepository.update(medicalDeclaration);
+    }
 }

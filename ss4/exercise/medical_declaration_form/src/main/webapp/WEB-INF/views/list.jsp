@@ -83,7 +83,7 @@
                     <td>${medicalDeclaration.email}</td>
 
                     <td>
-                        <a href="${medicalDeclaration.id}">
+                        <a href="/update/${medicalDeclaration.id}">
                             <i class="material-icons" style="color: dodgerblue">&#xE254;</i></a>
                     </td>
                 </tr>

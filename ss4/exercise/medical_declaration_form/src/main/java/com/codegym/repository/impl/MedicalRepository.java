@@ -36,4 +36,14 @@ public class MedicalRepository implements IMedicalRepository {
         medicalDeclaration.setId(autoIncrease++);
         declarationList.add(medicalDeclaration);
     }
+
+    @Override
+    public MedicalDeclaration findById(Integer id) {
+        return declarationList.get(id);
+    }
+
+    @Override
+    public void update(MedicalDeclaration medicalDeclaration) {
+        
+    }
 }
