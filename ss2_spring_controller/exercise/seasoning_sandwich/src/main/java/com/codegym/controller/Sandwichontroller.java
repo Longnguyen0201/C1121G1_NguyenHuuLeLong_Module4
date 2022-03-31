@@ -14,7 +14,7 @@ public class Sandwichontroller {
         return "index";
     }
     @RequestMapping("/save")
-    public ModelAndView save(@RequestParam (value = "condiment",defaultValue = "Nothing") String[] condiment ) {
+    public ModelAndView save(@RequestParam (value = "condiment",defaultValue = "nothing") String[] condiment ) {
         ModelAndView modelAndView = new ModelAndView("result");
         modelAndView.addObject("condiments",condiment);
     return modelAndView ;
