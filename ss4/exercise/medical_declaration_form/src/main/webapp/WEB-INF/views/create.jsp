@@ -39,73 +39,54 @@
             </div>
             <div class="form-group col-md-4">
                 <label>Giới tính <span style="color: red">(*)</span></label>
-                <form:input path="gender" type="text" class="form-control"/>
+                <form:select path="gender">
+                    <form:options items="${gender}"/>
+                </form:select>
             </div>
             <div class="form-group col-md-4">
                 <label>Quốc tịch <span style="color: red">(*)</span></label>
-                <form:input path="nationality" type="password" class="form-control"/>
+                <form:input path="nationality" type="text" class="form-control"/>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="inputAddress2">Số hộ chiếu hoặc số CMND <span style="color: red">(*)</span></label>
-            <form:input path="idCard" type="text" class="form-control" id="inputAddress2"/>
+            <label >Số hộ chiếu hoặc số CMND <span style="color: red">(*)</span></label>
+            <form:input path="idCard" type="text" class="form-control" />
         </div>
 
         <div class="form-group">
-            <label>Thông tin đi lại <span style="color: red">(*)</span></label><br>
-            <div class="form-check form-check-inline">
-                <form:input path="vehicle" class="form-check-input" type="radio" value="Tàu bay"/>
-                <label class="form-check-label">
-                    Tàu bay
-                </label>
+            <div class="form-group">
+                <label >Thông tin đi lại <span style="color: red">(*)</span></label><br>
+                <form:select path="vehicle">
+                    <form:options items="${vehicle}"/>
+                </form:select>
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="exampleRadios" value="Tàu thuyền">
-                <label class="form-check-label">
-                    Tàu thuyền
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="exampleRadios" value=" Ô tô" disabled>
-                <label class="form-check-label">
-                    Ô tô
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="exampleRadios" value="Khác" disabled>
-                <label class="form-check-label">
-                    Khác(Ghi rõ)
-                </label>
-            </div>
-        </div>
-
-        <div class="form-row">
+            <div class="form-row">
             <div class="form-group col-md-6">
                 <label>Số hiệu phương tiện</label>
-                <form:input path="idVehicle" type="email" class="form-control">
+                <form:input path="idVehicle" type="text" class="form-control"/>
             </div>
             <div class="form-group col-md-6">
                 <label>Số ghế</label>
-                <form:input path="seats" type="password" class="form-control">
+                <form:input path="seats" type="text" class="form-control"/>
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label>Ngày khởi hành <span style="color: red">(*)</span></label><br>
-                <form:input path="startDate" type="date" class="form-control">
+                <form:input path="startDate" type="date" class="form-control"/>
             </div>
             <div class="form-group col-md-6">
                 <label>Ngày kết thúc <span style="color: red">(*)</span></label><br>
-                <form:input path="endDate" type="date" class="form-control">
+                <form:input path="endDate" type="date" class="form-control"/>
             </div>
         </div>
 
         <div class="form-group">
             <label>Trong vòng 14 ngày qua, Anh/Chị có đến tỉnh/thành phố nào ? <span
                     style="color: red">(*)</span></label>
-            <form:input path="nearestProvince" type="text" class="form-control">
+            <form:input path="nearestProvince" type="text" class="form-control"/>
         </div>
 
         <div>
@@ -113,36 +94,36 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label>Tỉnh / thành <span style="color: red">(*)</span></label>
-                    <form:input path="province" type="text" class="form-control" id="inputail4">
+                    <form:input path="province" type="text" class="form-control" />
                 </div>
                 <div class="form-group col-md-4">
                     <label>Quận / huyện <span style="color: red">(*)</span></label>
-                    <form:input path="district" type="text" class="form-control">
+                    <form:input path="district" type="text" class="form-control"/>
                 </div>
                 <div class="form-group col-md-4">
                     <label>Phường / xẫ <span style="color: red">(*)</span></label>
-                    <form:input path="ward" type="text" class="form-control">
+                    <form:input path="ward" type="text" class="form-control"/>
                 </div>
             </div>
         </div>
 
         <div class="form-group">
             <label>Địa chỉ nơi ở <span style="color: red">(*)</span></label>
-            <form:input path="address" type="text" class="form-control" id="inpuress">
+            <form:input path="address" type="text" class="form-control" />
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label>Điện thoại <span style="color: red">(*)</span></label>
-                <form:input path="phone" type="email" class="form-control">
+                <form:input path="phone" type="text" class="form-control"/>
             </div>
             <div class="form-group col-md-6">
                 <label>Email</label>
-                <form:input path="email" type="password" class="form-control">
+                <form:input path="email" type="text" class="form-control"/>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Gửi tờ khai</button>
+        <button>Gửi tờ khai</button>
     </form:form>
 </div>
 

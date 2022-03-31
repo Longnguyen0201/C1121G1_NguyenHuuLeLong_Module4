@@ -16,4 +16,9 @@ public class MedicalService implements IMedicalService {
     public List<MedicalDeclaration> findAll() {
         return iMedicalRepository.findAll();
     }
+
+    @Override
+    public void save(MedicalDeclaration medicalDeclaration) {
+        iMedicalRepository.save(medicalDeclaration);
+    }
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IMedicalRepository {
     List<MedicalDeclaration> findAll();
+
+    void save(MedicalDeclaration medicalDeclaration);
 }

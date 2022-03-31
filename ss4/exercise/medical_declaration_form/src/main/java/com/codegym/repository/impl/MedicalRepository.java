@@ -30,4 +30,10 @@ public class MedicalRepository implements IMedicalRepository {
     public List<MedicalDeclaration> findAll() {
         return declarationList;
     }
+
+    @Override
+    public void save(MedicalDeclaration medicalDeclaration) {
+        medicalDeclaration.setId(autoIncrease++);
+        declarationList.add(medicalDeclaration);
+    }
 }
