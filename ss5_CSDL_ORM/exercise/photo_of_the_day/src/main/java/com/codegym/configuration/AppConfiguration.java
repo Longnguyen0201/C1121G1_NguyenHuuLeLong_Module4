@@ -46,7 +46,7 @@ public class AppConfiguration  implements ApplicationContextAware, WebMvcConfigu
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/song/");
+        templateResolver.setPrefix("/WEB-INF/commentList/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding("UTF-8");
@@ -74,7 +74,7 @@ public class AppConfiguration  implements ApplicationContextAware, WebMvcConfigu
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/comment?useSSL=false");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/comment_list?createDatabaseIfNotExist=true");
         dataSource.setUsername("root");
         dataSource.setPassword("674536");
         return dataSource;

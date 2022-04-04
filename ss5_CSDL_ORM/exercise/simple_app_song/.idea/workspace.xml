@@ -5,58 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cddd060-1ebc-4a67-91e0-8552ec080f33" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/.idea/exercise.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/configuration/CharsetFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/src/main/java/com/codegym/configuration/AppConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/src/main/java/com/codegym/configuration/AppInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/src/main/java/com/codegym/configuration/CharsetFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product_manager/src/main/java/com/codegym/configuration/AppConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product_manager/src/main/java/com/codegym/configuration/AppInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product_manager/src/main/java/com/codegym/configuration/CharsetFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product_manager/src/main/java/com/codegym/controller/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product_manager/src/main/java/com/codegym/models/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product_manager/src/main/java/com/codegym/repository/IProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product_manager/src/main/java/com/codegym/repository/impl/ProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product_manager/src/main/java/com/codegym/service/IProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product_manager/src/main/java/com/codegym/service/impl/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../product_manager/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/Service/ISongService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/Service/impl/SongService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/configuration/AppConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/configuration/AppInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/configuration/CharsetFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/controller/SongController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Song.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/repository/ISongRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/repository/impl/SongRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/song/createSong.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/song/delete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/song/edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/song/error-404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/song/layout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/song/songList.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer-management/src/main/java/cg/wbd/grandemonstration/repository/impl/BaseRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer-management/src/main/java/cg/wbd/grandemonstration/repository/impl/HibernateICustomerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer-management/src/main/java/cg/wbd/grandemonstration/service/ICustomerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer-management/src/main/java/cg/wbd/grandemonstration/service/impl/CustomerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../practice/customer-management/src/main/resources/hibernate.conf.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/src/main/java/com/codegym/controller/CommentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/src/main/java/com/codegym/model/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/src/main/java/com/codegym/repository/ICommentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/src/main/java/com/codegym/repository/impl/CommentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/src/main/java/com/codegym/service/ICommentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/src/main/java/com/codegym/service/impl/CommentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/src/main/webapp/WEB-INF/commentList/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../photo_of_the_day/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -65,18 +22,31 @@
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/build/classes/java/main/com/codegym/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/build/classes/java/main/com/codegym/controller/ProductController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/build/classes/java/main/com/codegym/repository/impl/ProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/build/classes/java/main/com/codegym/repository/impl/ProductRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/build/classes/java/main/com/codegym/service/impl/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/build/classes/java/main/com/codegym/service/impl/ProductService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/build/libs/customer_thymeleaf-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/build/libs/customer_thymeleaf-1.0-SNAPSHOT.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/configuration/CharsetFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/configuration/CharsetFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/controller/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/models/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/repository/impl/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/repository/impl/ProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/service/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/service/IProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/service/impl/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/java/com/codegym/service/impl/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/webapp/WEB-INF/views/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3_views_thymeleaf/exercise/product_thymeleaf/src/main/webapp/WEB-INF/views/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../photo_of_the_day/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../photo_of_the_day/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../photo_of_the_day/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../photo_of_the_day/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../photo_of_the_day/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../photo_of_the_day/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../photo_of_the_day/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../photo_of_the_day/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../photo_of_the_day/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../photo_of_the_day/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../photo_of_the_day/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../photo_of_the_day/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../photo_of_the_day/src/main/java/com/codegym/configuration/AppConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../photo_of_the_day/src/main/java/com/codegym/configuration/AppConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../photo_of_the_day/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/song/songList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/song/songList.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -279,9 +249,9 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Tomcat Server.Tomcat 9.0.59" />
       <item itemvalue="Gradle.simple_app_song [clean]" />
       <item itemvalue="Gradle.simple_app_song [build]" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.59" />
     </list>
     <recent_temporary>
       <list>
@@ -299,6 +269,9 @@
       <option name="presentableId" value="Default" />
       <updated>1649043848087</updated>
       <workItem from="1649043851067" duration="12868000" />
+      <workItem from="1649064150376" duration="2263000" />
+      <workItem from="1649076346682" duration="25000" />
+      <workItem from="1649076629398" duration="3294000" />
     </task>
     <servers />
   </component>

@@ -9,7 +9,6 @@
         <div class="col-md-8 mx-auto">
             <div class="contact-form">
                 <h1>Create new Product</h1>
-                <!--                <h3><span class="message">${requestScope["message"]}</span></h3>-->
                 <form th:action="@{/update}" th:object="${productObject}" method="post" novalidate = "novalidate" >
                     <input type="hidden" th:field="*{id}"/>
                     <div class="form-group">

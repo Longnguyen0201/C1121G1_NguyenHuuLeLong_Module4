@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<img id="img-of-the-day"><br><br>
+<form th:action="@{/create}"  th:object="${comment}" method="post">
+    <p>Vote: </p>
+    <select th:field="*{vote}">
+        <option th:value="1">1</option>
+        <option th:value="2">2</option>
+        <option th:value="3">3</option>
+        <option th:value="4">4</option>
+        <option th:value="5">5</option>
+    </select><br>
+    <p>Author: </p>
+    <input th:field="*{author}"><br>
+    <p>Comment: </p>
+    <textarea id="explanation" cols="200" rows="5" th:field="*{feedback}"></textarea><br><br>
+    <button>Comment:</button>
+</form>
+
+<table>
+    <tr th:each="comment,loop : ${commentObject}">
+        <td>
+            <div style="margin-bottom: 20px;">
+                <p th:text="${comment.author}"></p>
+                <p style="margin-bottom: 10px;width: 100%;border: none;"
+                   th:text="${comment.feedback}"></p>
+                <div style="display: flex;flex-direction: row-reverse;align-content: stretch;justify-content: flex-end;">
+                    <p style="border: none;max-width: 30px;text-align: center;margin-left: 10px; "
+                       th:text="${comment.numberLike}"></p>
+                    <a th:href="@{/like/{id}(id=${comment.id})}" class="fa fa-thumbs-up"></a>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+</body>
+
+<script>
+    let query = 'https://api.nasa.gov/planetary/apod?api_key=wtJhwIgStd2P5BB2v3CbcXaeB0afdKz143TmUq9v';
+    let request = new XMLHttpRequest();
+    request.open('GET', query);
+    request.onload = function () {
+        if (request.status === 200) {
+            let response = JSON.parse(request.responseText);
+            document.getElementById('img-of-the-day').setAttribute('src', response.url);
+            document.getElementById('title').innerText = response.title;
+        }
+    };
+    request.send();
+
+    function myFunction(x) {
+        x.classList.toggle("fa-thumbs-down");
+    }
+</script>
+</html>
