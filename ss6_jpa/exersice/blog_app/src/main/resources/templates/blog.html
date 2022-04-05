@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+</head>
+<body>
+<h3>Blog List</h3>
+<p>
+    <a th:href="@{/create}">
+        Add new Song
+    </a>
+</p>
+<form th:action="@{/search}" method="get" >
+    <input type="text" name="search"  placeholder="search blog"/>
+    <input type="submit"  value="Search">
+</form>
+<table id = "products">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Content</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog,loop : ${blogList}">
+        <td th:text="${loop.count}"></td>
+        <td th:text="${blog.title}"></td>
+        <td th:text="${blog.author}"></td>
+        <td th:text="${blog.content}"></td>
+        <td><a th:href="@{/edit/{id}(id=${blog.id})}">edit</a></td>
+        <td><a th:href="@{/delete/{id}(id=${blog.id})}">delete</a></td>
+        <td><a th:href="@{/view/{id}(id=${blog.id})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
