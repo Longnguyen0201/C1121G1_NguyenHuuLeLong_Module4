@@ -40,7 +40,6 @@ public class CommentController {
         ModelAndView modelAndView = new ModelAndView("redirect:/photo");
         Comment comment = iCommentService.findById(id);
         iCommentService.save(comment);
-
         return modelAndView;
     }
 

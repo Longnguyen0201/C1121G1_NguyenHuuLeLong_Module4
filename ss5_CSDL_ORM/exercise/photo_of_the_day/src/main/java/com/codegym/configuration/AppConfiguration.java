@@ -1,7 +1,6 @@
 package com.codegym.configuration;
 
 
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -33,7 +32,7 @@ import java.util.Properties;
 @ComponentScan("com.codegym")
 @EnableWebMvc
 @EnableTransactionManagement
-public class AppConfiguration  implements ApplicationContextAware, WebMvcConfigurer {
+public class AppConfiguration implements ApplicationContextAware, WebMvcConfigurer {
     private ApplicationContext applicationContext;
 
 
@@ -69,9 +68,8 @@ public class AppConfiguration  implements ApplicationContextAware, WebMvcConfigu
     }
 
 
-
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/comment_list?createDatabaseIfNotExist=true");
@@ -80,22 +78,22 @@ public class AppConfiguration  implements ApplicationContextAware, WebMvcConfigu
         return dataSource;
     }
 
-    Properties additionalProperties (){
+    Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto","update");
-        properties.setProperty("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }
 
     @Bean
     @Qualifier(value = "entityManager")
-    public EntityManager entityManager(EntityManagerFactory entityManagerFactory){
+    public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
         return entityManagerFactory.createEntityManager();
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean =new LocalContainerEntityManagerFactoryBean();
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPackagesToScan("com.codegym.model");
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -103,8 +101,9 @@ public class AppConfiguration  implements ApplicationContextAware, WebMvcConfigu
         entityManagerFactoryBean.setJpaProperties(additionalProperties());
         return entityManagerFactoryBean;
     }
+
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory){
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;

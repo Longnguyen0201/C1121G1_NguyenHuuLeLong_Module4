@@ -28,7 +28,7 @@ public class CommentRepository implements ICommentRepository {
     @Override
     public void save(Comment comment) {
         if (comment.getId() != null) {
-            comment.setNumberLike(comment.getNumberLike()+1);
+            comment.setNumberLike(comment.getNumberLike() + 1);
             entityManager.merge(comment);
         } else {
             entityManager.persist(comment);

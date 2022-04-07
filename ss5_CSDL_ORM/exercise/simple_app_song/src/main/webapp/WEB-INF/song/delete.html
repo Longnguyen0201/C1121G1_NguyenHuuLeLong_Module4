@@ -10,7 +10,7 @@
 <p>
     <a href="/song">Song list</a>
 </p>
-<form th:action="@{/delete}" th:object="${songObject}" method="post">
+<form th:action="@{/delete}" th:object="${}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>

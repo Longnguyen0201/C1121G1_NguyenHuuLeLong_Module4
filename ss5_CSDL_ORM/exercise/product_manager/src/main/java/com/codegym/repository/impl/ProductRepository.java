@@ -46,6 +46,8 @@ public class ProductRepository implements IProductRepository {
         if (product1 != null){
             entityManager.remove(product1);
         }
+
+
     }
 
     @Override

@@ -56,12 +56,13 @@ public class SongController {
     public ModelAndView deleteSong(@PathVariable Integer id) {
         Song song = iSongService.findById(id);
         ModelAndView modelAndView = new ModelAndView("/delete");
-        modelAndView.addObject("songObject",song);
+        modelAndView.addObject("songObject", song);
         return modelAndView;
     }
+
     @PostMapping(value = "/delete")
-    public ModelAndView delete(@ModelAttribute("songObject")Song song){
-        ModelAndView modelAndView =new ModelAndView("redirect:/song");
+    public ModelAndView delete(@ModelAttribute("songObject") Song song) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/song");
         iSongService.remove(song.getId());
         return modelAndView;
     }
