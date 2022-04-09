@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete customer</title>
+</head>
+<body>
+<h1>Delete passbook</h1>
+<h2>Are you sure?</h2>
+<p>
+    <a href="/list">Passbook list</a>
+</p>
+<form th:action="@{/delete}" th:object="${passBook}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Mã sổ tiếp kiệm</td>
+            <td th:text="${passBook.id}"></td>
+        </tr>
+        <tr>
+            <td>Mã khách hàng</td>
+            <td th:text="${passBook.customer.code}"></td>
+        </tr>
+        <tr>
+            <td>Tên khách hàng: </td>
+            <td th:text="${passBook.customer.name}"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Delete passbook"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
