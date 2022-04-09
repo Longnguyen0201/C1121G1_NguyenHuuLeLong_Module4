@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -112,11 +113,14 @@ public class PassBookController {
     }
 
     @GetMapping(value = "/search")
-    public ModelAndView search(@RequestParam("keyword") String keyword){
+    public ModelAndView search(@RequestParam("keyword") String keyword, RedirectAttributes redirectAttributes){
         ModelAndView modelAndView;
         List<PassBook> list = iPassBookService.findByName(keyword);
         if(keyword.equals("")||list.isEmpty()){
-            return new ModelAndView("redirect:/list");
+            modelAndView = new ModelAndView("redirect:/list");
+            redirectAttributes.addFlashAttribute("keyword", keyword);
+            redirectAttributes.addFlashAttribute("message", "Passbook not found");
+            return modelAndView;
         }else {
             modelAndView = new ModelAndView("/list");
             modelAndView.addObject("keyword", keyword);

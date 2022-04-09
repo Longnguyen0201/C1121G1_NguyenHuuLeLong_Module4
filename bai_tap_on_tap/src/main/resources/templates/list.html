@@ -12,6 +12,7 @@
 <form action="/search" method="get" >
     <input type="text" name="keyword"  th:placeholder="${keyword}" />
     <input type="submit"  value="Search">
+    <p th:text="${message}"></p>
 </form>
 <table id = "products">
     <thead>
