@@ -1,4 +1,4 @@
 package cg.wbd.grandemonstration.service;
 
-public class DuplicateEmailExeption extends  {
+public class DuplicateEmailException extends  Exception{
 }
