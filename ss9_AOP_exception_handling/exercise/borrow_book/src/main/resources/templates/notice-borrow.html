@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <p> Bạn đã mượn sách thành Công </p>
+    <table>
+        <tr>
+            <td>Mã mượn sách của bạn là: </td>
+            <td th:text="${borrowCardID}" ></td>
+            <td th:text="${message}"></td>
+        </tr>
+    </table>
+    <a href="/home" class="btn btn-primary"> Xác nhận</a>
+</body>
+</html>

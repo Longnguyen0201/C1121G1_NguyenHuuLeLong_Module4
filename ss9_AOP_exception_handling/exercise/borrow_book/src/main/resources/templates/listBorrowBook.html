@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+</head>
+<body>
+<h3>Danh sách</h3>
+<p>
+
+</p>
+<form action="/search" method="get">
+    <div>
+        <span>Tìm kiếm tên sách </span><input type="text" name="keyword">
+        <input type="submit" value="Search">
+    </div>
+</form>
+<a href="/home" class="btn btn-primary"> Danh sách Sách </a>
+<table id="products" >
+    <thead>
+    <tr>
+        <th>Stt</th>
+        <th>Mã mượn sách</th>
+        <th>Họ tên người mượn</th>
+        <th>Ngày mượn sách</th>
+        <th>Ngày trả sách</th>
+        <th>Trạng thái</th>
+        <th>Tên Sách</th>
+        <th>Tên tác giả</th>
+        <th>Chức năng</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="borrowCard,loop : ${borrowCards}">
+        <td th:text="${loop.count}"></td>
+        <td th:text="${borrowCard.borrowBookId}"></td>
+        <td th:text="${borrowCard.borrower.name}"></td>
+
+        <td th:text="${borrowCard.startDate}"></td>
+        <td th:text="${borrowCard.endDate}"></td>
+        <td th:text="${borrowCard.status}"></td>
+        <td th:text="${borrowCard.book.nameBook}"></td>
+        <td th:text="${borrowCard.book.author}"></td>
+
+<!--        <td><a th:href="@{/create/{maMuonSach}(maMuonSach=${theMuon.maMuonSach})}">Trả sách</a></td>-->
+
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:if ="${borrowCards.hasPrevious()}" th:href="@{/borrowBook(page=${borrowCards.number - 1})}">Previous</a>
+    <span th:text="${borrowCards.number + 1 }"></span>
+    <span th:text="${borrowCards.totalPages }"></span>
+    <a th:if ="${borrowCards.hasNext()}" th:href="@{/borrowBook(page=${borrowCards.number + 1})}">Next</a>
+</div>
+</body>
+</html>

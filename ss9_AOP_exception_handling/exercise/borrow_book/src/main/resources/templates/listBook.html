@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+</head>
+<body>
+<h3>Danh sách</h3>
+<p>
+
+</p>
+<form action="/search" method="get">
+    <div>
+        <span>Tìm kiếm tên sách </span><input type="text" name="keyword">
+        <input type="submit" value="Search">
+    </div>
+</form>
+<a href="/borrowBook" class="btn btn-primary"> Danh sách mượn </a>
+<a href="/return" class="btn btn-primary"> Trả sách </a>
+<table id="products" >
+    <thead>
+    <tr>
+        <th>Stt</th>
+        <th>Tên Sách</th>
+        <th>Tên tác giả</th>
+        <th>Số lượng</th>
+        <th>Mô tả</th>
+        <th>Chức năng</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book,loop : ${bookPages}">
+        <td th:text="${loop.count}"></td>
+        <td th:text="${book.nameBook}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.quantity}"></td>
+        <td th:text="${book.describe}"></td>
+
+        <td><a th:href="@{/create/{bookId}(bookId=${book.bookId})}">Mượn sách</a></td>
+<!--        <td><a th:href="@{/view/{id}(id=${book.maSach})}">view</a></td>-->
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:if ="${bookPages.hasPrevious()}" th:href="@{/home(page=${bookPages.number - 1})}">Previous</a>
+    <span th:text="${bookPages.number + 1 }"></span>
+    <span th:text="${bookPages.totalPages }"></span>
+    <a th:if ="${bookPages.hasNext()}" th:href="@{/home(page=${bookPages.number + 1})}">Next</a>
+</div>
+</body>
+</html>
