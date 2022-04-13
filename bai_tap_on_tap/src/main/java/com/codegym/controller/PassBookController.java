@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PassBookController {
@@ -28,7 +29,7 @@ public class PassBookController {
     ICustomerService iCustomerService;
 
     @ModelAttribute("periodList")
-    public List<Integer> period (){
+    public List<Integer> period() {
         return Arrays.asList(3, 6, 9, 12, 18, 24);
     }
 
@@ -54,12 +55,12 @@ public class PassBookController {
         passBookDTO.validate(passBookDTO, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             modelAndView = new ModelAndView("create");
-            modelAndView.addObject("passbookDto",passBookDTO);
+//            modelAndView.addObject("passbookDto",passBookDTO);
             return modelAndView;
         }
-        Customer  customer = new Customer(passBookDTO.getCustomer().getCode(),passBookDTO.getCustomer().getName());
+        Customer customer = new Customer(passBookDTO.getCustomer().getCode(), passBookDTO.getCustomer().getName());
         PassBook passBook = new PassBook();
-        BeanUtils.copyProperties(passBookDTO,passBook);
+        BeanUtils.copyProperties(passBookDTO, passBook);
         passBook.setCustomer(customer);
         iPassBookService.save(passBook);
         modelAndView = new ModelAndView("redirect:/list");
@@ -68,29 +69,31 @@ public class PassBookController {
 
     @GetMapping("/edit/{id}")
     public ModelAndView showEditForm(@PathVariable Long id) {
-        PassBook passBook =  iPassBookService.findById(id);
-
-        CustomerDTO customerDTO = new CustomerDTO(passBook.getCustomer().getCode(),passBook.getCustomer().getName());
-        PassBookDTO passBookDTO =new PassBookDTO();
-        BeanUtils.copyProperties(passBook,passBookDTO);
-        passBookDTO.setCustomer(customerDTO);
         ModelAndView modelAndView = new ModelAndView("/edit");
+        PassBook passBook = iPassBookService.findById(id);
+
+        CustomerDTO customerDTO = new CustomerDTO(passBook.getCustomer().getId(), passBook.getCustomer().getCode(),
+                passBook.getCustomer().getName());
+        PassBookDTO passBookDTO = new PassBookDTO();
+        BeanUtils.copyProperties(passBook, passBookDTO);
+        passBookDTO.setCustomer(customerDTO);
         modelAndView.addObject("passBookDTO", passBookDTO);
         return modelAndView;
     }
 
     @PostMapping(value = "/edit")
-    public ModelAndView editBlog(@ModelAttribute("passBookDTO") PassBookDTO passBookDTO,BindingResult bindingResult) {
+    public ModelAndView editBlog(@ModelAttribute("passBookDTO") PassBookDTO passBookDTO, BindingResult bindingResult) {
         ModelAndView modelAndView;
         passBookDTO.validate(passBookDTO, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             modelAndView = new ModelAndView("/edit");
-            modelAndView.addObject("passbookDto",passBookDTO);
+//            modelAndView.addObject("passbookDto", passBookDTO);
             return modelAndView;
         }
-        Customer  customer = new Customer(passBookDTO.getCustomer().getCode(),passBookDTO.getCustomer().getName());
         PassBook passBook = new PassBook();
-        BeanUtils.copyProperties(passBookDTO,passBook);
+        BeanUtils.copyProperties(passBookDTO, passBook);
+        Customer customer = new Customer(passBookDTO.getCustomer().getId(),
+                passBookDTO.getCustomer().getCode(), passBookDTO.getCustomer().getName());
         passBook.setCustomer(customer);
         iPassBookService.save(passBook);
         modelAndView = new ModelAndView("redirect:/list");
@@ -100,11 +103,12 @@ public class PassBookController {
 
     @GetMapping(value = "/delete/{id}")
     public ModelAndView delete(@PathVariable Long id) {
-       PassBook passBook = iPassBookService.findById(id);
+        PassBook passBook = iPassBookService.findById(id);
         ModelAndView modelAndView = new ModelAndView("/delete");
         modelAndView.addObject("passBook", passBook);
         return modelAndView;
     }
+
     @PostMapping(value = "/delete")
     public ModelAndView delete(@ModelAttribute("passBook") PassBook passBook) {
         ModelAndView modelAndView = new ModelAndView("redirect:/list");
@@ -113,23 +117,19 @@ public class PassBookController {
     }
 
     @GetMapping(value = "/search")
-    public ModelAndView search(@RequestParam("keyword") String keyword, RedirectAttributes redirectAttributes){
+    public ModelAndView search(@RequestParam("keyword") String keyword, RedirectAttributes redirectAttributes) {
         ModelAndView modelAndView;
         List<PassBook> list = iPassBookService.findByName(keyword);
-        if(keyword.equals("")||list.isEmpty()){
+        if (keyword.equals("") || list.isEmpty()) {
             modelAndView = new ModelAndView("redirect:/list");
             redirectAttributes.addFlashAttribute("keyword", keyword);
             redirectAttributes.addFlashAttribute("message", "Passbook not found");
             return modelAndView;
-        }else {
+        } else {
             modelAndView = new ModelAndView("/list");
             modelAndView.addObject("keyword", keyword);
             modelAndView.addObject("passbookList", list);
             return modelAndView;
         }
     }
-
-
-
-
 }

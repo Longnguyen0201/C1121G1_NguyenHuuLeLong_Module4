@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head">
 </head>
 <body>
 <h3>Bank Passbook List</h3>
 <p>
-    <a th:href="@{/create}">
-        Add new passbook
-    </a>
+
 </p>
-<form action="/search" method="get" >
-    <input type="text" name="keyword"  th:placeholder="${keyword}" />
-    <input type="submit"  value="Search">
-    <p th:text="${message}"></p>
+<form action="/search" method="get">
+    <div>
+        <span>Tìm kiếm tên khách hàng</span><input type="text" name="keyword" th:placeholder="${keyword}">
+        <span>Thời gian</span><input th:type="date" name="startDay">
+        <span>Đến</span><input th:type="date" name="endDay">
+        <input type="submit" value="Search">
+        <p th:text="${message}"></p>
+    </div>
 </form>
-<table id = "products">
+<table id="products">
     <thead>
     <tr>
-        <th>Mã sổ </th>
+        <th>Mã sổ</th>
         <th>Mã khách hàng</th>
         <th>Tên khách hàng</th>
         <th>Thời gian bắt đầu gửi</th>

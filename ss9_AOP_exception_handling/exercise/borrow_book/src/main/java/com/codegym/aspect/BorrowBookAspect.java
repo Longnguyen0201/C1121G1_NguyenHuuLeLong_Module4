@@ -20,14 +20,11 @@ public class BorrowBookAspect {
         System.err.println("Method name: " + methodName);
         System.err.println("Args: " + args);
     }
-
+    private static Integer countUsers = 0;
     //    @AfterReturning(pointcut = "within(com.codegym.controller.BorrowBookController.*)")
     @AfterReturning(pointcut = "execution(public * com.codegym.controller.BorrowBookController.*(..))")
     public void logController(JoinPoint joinPoint) {
-        String methodName = joinPoint.getSignature().getName();
-        String args = Arrays.toString(joinPoint.getArgs());
-
-        System.err.println("Method name: " + methodName);
-        System.err.println("Args: " + args);
+        countUsers++;
+        System.err.println("number of users: " + countUsers);
     }
 }

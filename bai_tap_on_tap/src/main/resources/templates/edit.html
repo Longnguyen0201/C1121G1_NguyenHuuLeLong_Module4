@@ -8,6 +8,9 @@
             <div class="contact-form">
                 <h1>Add new Bank Passbook</h1>
                 <form th:action="@{/save}" th:object="${passBookDTO}" method="post" novalidate = "novalidate">
+                    <input th:type="hidden" th:field="*{id}">
+<!--                    <input th:type="hidden" th:field="*{customer.id}">-->
+
                     <div class="form-group">
                         <label>Mã khách hàng </label>
                         <input type="text" name="author" class="form-control" th:field="*{customer.code}"readonly/>

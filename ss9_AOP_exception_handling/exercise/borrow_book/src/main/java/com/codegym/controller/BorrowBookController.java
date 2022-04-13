@@ -37,7 +37,7 @@ public class BorrowBookController {
     }
 
     @GetMapping(value = "/create/{bookId}")
-    public ModelAndView formCreate(@PathVariable Integer bookId) {
+    public ModelAndView formCreate(@PathVariable Integer bookId) throws Exception {
         Optional<Book> book = iBookService.findById(bookId);
         BorrowCardDto borrowCardDto = new BorrowCardDto();
         borrowCardDto.setBook(book.orElse(null));
@@ -46,8 +46,7 @@ public class BorrowBookController {
             modelAndView.addObject("borrowCardDto", borrowCardDto);
             return modelAndView;
         } else {
-            ModelAndView modelAndView = new ModelAndView("/error.404");
-            return modelAndView;
+            throw new Exception();
         }
     }
 
@@ -120,6 +119,11 @@ public class BorrowBookController {
         modelAndView.addObject("borrowCards", borrowCards);
         return modelAndView;
     }
+    @ExceptionHandler(Exception.class)
+    public String goError(){
+        return "error";
+    }
+
 
 
 }

@@ -17,9 +17,19 @@ public class Customer<set> {
     public Customer() {
     }
 
+    public Customer(Long id, String code, String name, Set<PassBook> passBooks) {
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.passBooks = passBooks;
+    }
+
     public Customer(String code, String name) {
         this.code = code;
         this.name = name;
+    }
+
+    public Customer(Long id, String code, String name) {
     }
 
     public Long getId() {

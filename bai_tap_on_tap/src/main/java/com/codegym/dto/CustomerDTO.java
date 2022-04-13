@@ -1,25 +1,24 @@
 package com.codegym.dto;
 
-import com.codegym.model.PassBook;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import java.util.Set;
 
 public class CustomerDTO {
     private Long id;
-    @NotEmpty(message = "Please input Code!")
+    @NotEmpty(message = "Vui lòng nhập số  mã khách hàng! ")
     private String code;
-    @NotEmpty(message = "Please input name!")
-    @Pattern(regexp = "(^$|^[\\p{Lu}\\p{Ll}]+( [\\p{Lu}\\p{Ll}]+)*$)",message = "Name cannot contain letters and numbers")
+    @NotEmpty(message = "Vui lòng nhập tên khách hàng!")
+    @Pattern(regexp = "(^$|^[\\p{Lu}\\p{Ll}]+( [\\p{Lu}\\p{Ll}]+)*$)",message = "Tên khách hàng không được có kí tự đặc biệt và số")
     private String name;
 
 
     public CustomerDTO(String code, String name) {
+        this.code = code;
+        this.name = name;
+    }
+
+    public CustomerDTO(Long id, String code, String name) {
+        this.id = id;
         this.code = code;
         this.name = name;
     }
