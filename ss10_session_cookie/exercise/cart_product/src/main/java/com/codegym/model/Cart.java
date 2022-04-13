@@ -73,5 +73,11 @@ public class Cart {
     }
 
 
+    public void remove(Product product) {
+        products.remove(product);
+    }
 
+    public void buy() {
+        products.clear();
+    }
 }

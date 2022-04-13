@@ -163,7 +163,7 @@
                             </a>
                             <h5>
                                 <strong>
-                                    <a href="" class="dark-grey-text" th:text="${product.name}">
+                                    <a th:href="@{/view/__${product.id}__}" class="dark-grey-text" th:text="${product.name}">
                                         <span class="badge badge-pill danger-color">NEW</span>
                                     </a>
                                 </strong>
@@ -172,9 +172,9 @@
                             <h4 class="font-weight-bold blue-text">
                                 <strong th:text="${product.price}"></strong><span>$</span>
                             </h4>
-                            <a th:href="@{/add/__${product.id}__(action='list')}">Add to cart</a>
-
-
+                            <a th:href="@{/add/__${product.id}__(action='list')}" class="badge badge-pill badge-primary">
+                                Add To Cart
+                            </a>
                         </div>
                         <!--Card content-->
 
@@ -185,8 +185,6 @@
 
         </section>
         <!--Section: Products v.3-->
-
-
     </div>
 </main>
 
