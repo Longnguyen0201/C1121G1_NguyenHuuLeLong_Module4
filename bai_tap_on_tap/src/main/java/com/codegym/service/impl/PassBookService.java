@@ -35,6 +35,6 @@ public class PassBookService implements IPassBookService {
 
     @Override
     public List<PassBook> findByName(String keyword) {
-        return iPassBookRepository.findAllByName(keyword);
+        return iPassBookRepository.findAllByCustomer_NameContaining(keyword);
     }
 }
