@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Spring product</title>
+
+    <style type="text/css">
+        h3 {
+            background-color: blue;
+            color: white;
+            padding: 10px 0 10px 20px;
+        }
+
+        footer {
+            margin: 10px 0;
+        }
+
+        #products {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #products td, #products th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #products tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #products tr:hover {
+            background-color: #ddd;
+        }
+
+        #products th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        input[type=text], input[type=email] {
+            width: 100%;
+            padding: 12px 0px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 300px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        #form {
+            width: 500px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .notify span {
+            font-size: 15px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<h3>Blog List</h3>
+<p>
+    <!--    <a th:href="@{/create}">-->
+    <!--        Add new Song-->
+    <!--    </a>-->
+</p>
+<div >
+    <input type="text" name="keyword" id="keyword" placeholder="search blog"/>
+    <input type="submit" value="Search" id="searchName">
+</div>
+<table id="products">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Content</th>
+        <th>Detail</th>
+    </tr>
+    </thead>
+    <tbody id="bodyBlog">
+    </tbody>
+
+</table>
+<button id="moreBlog">More</button>
+<!--<div>-->
+<!--    <a th:if ="${blogList.hasPrevious()}" th:href="@{/blog(page=${blogList.number - 1},keyword=${keyWordValue})}">Previous</a>-->
+<!--    <span th:text="${blogList.number + 1 }"></span>-->
+<!--    <span th:text="${blogList.totalPages }"></span>-->
+<!--    <a th:if ="${blogList.hasNext()}" th:href="@{/blog(page=${blogList.number + 1},keyword=${keyWordValue})}">Next</a>-->
+<!--</div>-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+    $("#searchName").click(function () {
+        let keywordVal = $("#keyword").val();
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "GET", //GET, DELETE, PUT...
+            url: "http://localhost:8080/blog/search?keyword=" + keywordVal,
+            success: function (resultSuccess) {
+                let blogListSearch = resultSuccess;
+                let outHTML = "";
+
+                for (let i = 0; i < blogListSearch.length; i++) {
+                    outHTML += `
+                            <tr>
+                                <td>${i + 1}</td>
+                                <td>${blogListSearch[i].category.name}</td>
+                                <td>${blogListSearch[i].author}</td>
+                                <td>${blogListSearch[i].contentes}</td>
+                                <td><a href="#">Detail</a></td>
+                            </tr>
+                        `;
+                    // outHTML += "<tr><td>" + (i + 1) + "</td><td></td>"
+                }
+                console.log(outHTML);
+                $("#bodyBlog").html(outHTML);
+            },
+            error: function (resultError) {
+                alert("He thong dang bao tri");
+            }
+        });
+    })
+
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: "GET", //GET, DELETE, PUT...
+        url: "http://localhost:8080/blog/list",
+        success: function (resultSuccess) {
+            let blogList = resultSuccess.content;
+            let outHTML = "";
+
+            for (let i = 0; i < blogList.length; i++) {
+                outHTML += `
+                            <tr>
+                                <td>${i + 1}</td>
+                                <td>${blogList[i].category.name}</td>
+                                <td>${blogList[i].author}</td>
+                                <td>${blogList[i].contentes}</td>
+                                <td><a href="#">Detail</a></td>
+                            </tr>
+                        `;
+                // outHTML += "<tr><td>" + (i + 1) + "</td><td></td>"
+            }
+
+            console.log(outHTML);
+            $("#bodyBlog").html(outHTML);
+        },
+        error: function (resultError) {
+            alert("He thong dang bao tri");
+        }
+    });
+    // $(#moreBlog).ready(function () {
+    //     $.ajax({
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         type: "GET", //GET, DELETE, PUT...
+    //         url: "http://localhost:8080/blog/list",
+    //         success: function (resultSuccess) {
+    //             let blogList = resultSuccess.content;
+    //             let outHTML = "";
+    //
+    //             for (let i = 0; i < blogList.length; i++) {
+    //                 outHTML += `
+    //                         <tr>
+    //                             <td>${i + 1}</td>
+    //                             <td>${blogList[i].category.name}</td>
+    //                             <td>${blogList[i].author}</td>
+    //                             <td>${blogList[i].contentes}</td>
+    //                             <td><a href="#">Detail</a></td>
+    //                         </tr>
+    //                     `;
+    //                 // outHTML += "<tr><td>" + (i + 1) + "</td><td></td>"
+    //             }
+    //
+    //             console.log(outHTML);
+    //             $("#bodyBlog").html(outHTML);
+    //         },
+    //         error: function (resultError) {
+    //             alert("He thong dang bao tri");
+    //         }
+    //     })
+
+    // })
+
+
+</script>
+</body>
+
+</html>
