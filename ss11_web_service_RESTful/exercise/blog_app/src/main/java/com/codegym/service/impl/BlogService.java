@@ -49,4 +49,14 @@ public class BlogService implements IBlogService {
         return iBlogRepository.findByNameCategory(keyword);
     }
 
+    @Override
+    public Iterable<Blog> findByAuthor(String keyword) {
+        return iBlogRepository.findAllByAuthorContaining(keyword);
+    }
+
+    @Override
+    public Page<Blog> findAllPage(Pageable pageable) {
+        return iBlogRepository.findAll(pageable);
+    }
+
 }

@@ -18,4 +18,8 @@ public interface IBlogRepository extends JpaRepository<Blog, Long> {
     @Query(value = "select blog.*,category.name from blog join category on blog.category_id = category.category_id " +
             " where category.name like concat('%',?1,'%');", nativeQuery = true)
     Iterable<Blog> findByNameCategory(String keyword);
+
+    @Query(value = "select blog.*,category.name from blog join category on blog.category_id = category.category_id " +
+            " where blog.author like concat('%',?1,'%');", nativeQuery = true)
+    Iterable<Blog> findAllByAuthorContaining(String keyword);
 }

@@ -10,7 +10,8 @@ public class Blog {
     private String author;
     @Column(name = "date_of_writing", columnDefinition = "date")
     private String dateOfWriting;
-    private String content;
+    @Column(name = "content")
+    private String contentes;
     @ManyToOne
     @JoinColumn(name = "category_id",referencedColumnName = "categoryId")
     private Category category;
@@ -36,12 +37,12 @@ public class Blog {
         this.author = author;
     }
 
-    public String getContent() {
-        return content;
+    public String getContentes() {
+        return contentes;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setContentes(String content) {
+        this.contentes = content;
     }
 
     public String getDateOfWriting() {

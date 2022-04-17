@@ -30,7 +30,7 @@
         <td th:text="${loop.count}"></td>
         <td th:if="${blog.category}" th:text="${blog.category.name}"></td>
         <td th:text="${blog.author}"></td>
-        <td th:text="${blog.content}"></td>
+        <td th:text="${blog.contentes}"></td>
         <td><a th:href="@{/edit/{id}(id=${blog.id})}">edit</a></td>
         <td><a th:href="@{/delete/{id}(id=${blog.id})}">delete</a></td>
         <td><a th:href="@{/view/{id}(id=${blog.id})}">view</a></td>

@@ -11,4 +11,8 @@ public interface IBlogService extends IGeneralService<Blog>{
 
 
     Iterable<Blog> findBlogByCategory(String keyword);
+
+    Iterable<Blog> findByAuthor(String keyword);
+
+    Page<Blog> findAllPage(Pageable pageable);
 }

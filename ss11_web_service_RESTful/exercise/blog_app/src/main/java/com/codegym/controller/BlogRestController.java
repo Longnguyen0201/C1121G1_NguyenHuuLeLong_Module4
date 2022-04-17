@@ -11,17 +11,13 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
 import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/blog")
+@CrossOrigin("*")
 public class BlogRestController {
 
     @Autowired
@@ -30,9 +26,9 @@ public class BlogRestController {
     @Autowired
     private ICategoryService iCategoryService;
 
-    @GetMapping(value = {"", "/list"})
-    public ResponseEntity<Iterable<Blog>> showListBlog() {
-        Iterable<Blog> blogList = iBlogService.findAll();
+    @GetMapping(value = { "/list"})
+    public ResponseEntity<Page<Blog>> showListBlog(@PageableDefault(value = 2) Pageable pageable) {
+        Page<Blog> blogList = iBlogService.findAllPage(pageable);
         return new ResponseEntity<>(blogList, HttpStatus.OK);
     }
 
@@ -52,13 +48,23 @@ public class BlogRestController {
         }
     }
 
-    @GetMapping(value = "/search/{keyword}")
-    public ResponseEntity<Iterable<Blog>> SearchBlogByCategory (@PathVariable String keyword){
-        Iterable<Blog> blog = iBlogService.findBlogByCategory(keyword);
+//    @GetMapping(value = "/search/{keyword}")
+//    public ResponseEntity<Iterable<Blog>> SearchBlogByCategory (@PathVariable String keyword){
+//        Iterable<Blog> blog = iBlogService.findBlogByCategory(keyword);
+//        if (blog != null){
+//            return new ResponseEntity<>(blog, HttpStatus.OK);
+//        }else {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
+    @GetMapping(value = "/search")
+    public ResponseEntity<Iterable<Blog>> SearchBlogByAuthor (@RequestParam("keyword") String keyword){
+        Iterable<Blog> blog = iBlogService.findByAuthor(keyword);
         if (blog != null){
             return new ResponseEntity<>(blog, HttpStatus.OK);
         }else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+    
 }

@@ -91,7 +91,7 @@
     <!--        Add new Song-->
     <!--    </a>-->
 </p>
-<div >
+<div>
     <input type="text" name="keyword" id="keyword" placeholder="search blog"/>
     <input type="submit" value="Search" id="searchName">
 </div>
@@ -119,6 +119,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+    let outHTML = "";
+    let index = 1;
 
     $("#searchName").click(function () {
         let keywordVal = $("#keyword").val();
@@ -131,8 +133,6 @@
             url: "http://localhost:8080/blog/search?keyword=" + keywordVal,
             success: function (resultSuccess) {
                 let blogListSearch = resultSuccess;
-                let outHTML = "";
-
                 for (let i = 0; i < blogListSearch.length; i++) {
                     outHTML += `
                             <tr>
@@ -163,12 +163,12 @@
         url: "http://localhost:8080/blog/list",
         success: function (resultSuccess) {
             let blogList = resultSuccess.content;
-            let outHTML = "";
+            // let outHTML = "";
 
             for (let i = 0; i < blogList.length; i++) {
                 outHTML += `
                             <tr>
-                                <td>${i + 1}</td>
+                                <td>${index++}</td>
                                 <td>${blogList[i].category.name}</td>
                                 <td>${blogList[i].author}</td>
                                 <td>${blogList[i].contentes}</td>
@@ -185,40 +185,41 @@
             alert("He thong dang bao tri");
         }
     });
-    // $(#moreBlog).ready(function () {
-    //     $.ajax({
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json'
-    //         },
-    //         type: "GET", //GET, DELETE, PUT...
-    //         url: "http://localhost:8080/blog/list",
-    //         success: function (resultSuccess) {
-    //             let blogList = resultSuccess.content;
-    //             let outHTML = "";
-    //
-    //             for (let i = 0; i < blogList.length; i++) {
-    //                 outHTML += `
-    //                         <tr>
-    //                             <td>${i + 1}</td>
-    //                             <td>${blogList[i].category.name}</td>
-    //                             <td>${blogList[i].author}</td>
-    //                             <td>${blogList[i].contentes}</td>
-    //                             <td><a href="#">Detail</a></td>
-    //                         </tr>
-    //                     `;
-    //                 // outHTML += "<tr><td>" + (i + 1) + "</td><td></td>"
-    //             }
-    //
-    //             console.log(outHTML);
-    //             $("#bodyBlog").html(outHTML);
-    //         },
-    //         error: function (resultError) {
-    //             alert("He thong dang bao tri");
-    //         }
-    //     })
+    // let more
+    let count = 1;
+    $("#moreBlog").click(function () {
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "GET", //GET, DELETE, PUT...
+            url: "http://localhost:8080/blog/list?page=" + count++,
+            success: function (resultSuccess) {
+                let blogList = resultSuccess.content;
+                // let outHTML = "";
 
-    // })
+                for (let i = 0; i < blogList.length; i++) {
+                    outHTML += `
+                            <tr>
+                                <td>${index++}</td>
+                                <td>${blogList[i].category.name}</td>
+                                <td>${blogList[i].author}</td>
+                                <td>${blogList[i].contentes}</td>
+                                <td><a href="#">Detail</a></td>
+                            </tr>
+                        `;
+                    // outHTML += "<tr><td>" + (i + 1) + "</td><td></td>"
+                }
+                console.log(outHTML);
+                $("#bodyBlog").html(outHTML);
+            },
+            error: function (resultError) {
+                alert("He thong dang bao tri");
+            }
+        })
+
+    })
 
 
 </script>
