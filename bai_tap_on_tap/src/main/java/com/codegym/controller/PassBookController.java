@@ -8,7 +8,11 @@ import com.codegym.service.ICustomerService;
 import com.codegym.service.IPassBookService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,13 +37,13 @@ public class PassBookController {
         return Arrays.asList(3, 6, 9, 12, 18, 24);
     }
 
-    @GetMapping(value = {"/list", ""})
-    public ModelAndView showList() {
-        ModelAndView modelAndView = new ModelAndView("/list");
-        List<PassBook> passBooks = iPassBookService.findAll();
-        modelAndView.addObject("passbookList", passBooks);
-        return modelAndView;
-    }
+//    @GetMapping(value = {"/list", ""})
+//    public ModelAndView showList() {
+//        ModelAndView modelAndView = new ModelAndView("/list");
+//        List<PassBook> passBooks = iPassBookService.findAll();
+//        modelAndView.addObject("passbookList", passBooks);
+//        return modelAndView;
+//    }
 
     @GetMapping(value = "/create")
     public ModelAndView showFormCreate() {
@@ -116,20 +120,21 @@ public class PassBookController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/search")
-    public ModelAndView search(@RequestParam("keyword") String keyword, RedirectAttributes redirectAttributes) {
-        ModelAndView modelAndView;
-        List<PassBook> list = iPassBookService.findByName(keyword);
-        if (keyword.equals("") || list.isEmpty()) {
-            modelAndView = new ModelAndView("redirect:/list");
-            redirectAttributes.addFlashAttribute("keyword", keyword);
-            redirectAttributes.addFlashAttribute("message", "Passbook not found");
-            return modelAndView;
-        } else {
-            modelAndView = new ModelAndView("/list");
-            modelAndView.addObject("keyword", keyword);
-            modelAndView.addObject("passbookList", list);
-            return modelAndView;
-        }
+    @GetMapping(value = "/list")
+    public String search(@RequestParam("keyword") Optional<String> keywordValue,
+                         @PageableDefault(value = 3) Pageable pageable,
+                         RedirectAttributes redirectAttributes,
+                         ModelMap modelMap) {
+        String keyword = keywordValue.orElse("");
+        Page<PassBook> list = iPassBookService.findByName(keyword, pageable);
+//        if (keyword.equals("") || list.isEmpty()) {
+//            redirectAttributes.addFlashAttribute("keyword", keyword);
+//            redirectAttributes.addFlashAttribute("message", "Passbook not found");
+//            return "redirect:/list";
+//        } else {
+        modelMap.put("keyword", keyword);
+        modelMap.put("passbookList", list);
+        return "/list";
+//        }
     }
 }

@@ -1,14 +1,15 @@
-package com.codegym.service.impl;
+package com.codegym.service.imp;
 
+import com.codegym.service.ISmartPhoneService;
 import com.codegym.model.Smartphone;
 import com.codegym.repository.ISmartphoneRepository;
-import com.codegym.service.ISmartphoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
 @Service
-public class SmartphoneService implements ISmartphoneService {
+public class SmartphoneService implements ISmartPhoneService {
     @Autowired
     private ISmartphoneRepository smartPhoneRepository;
 

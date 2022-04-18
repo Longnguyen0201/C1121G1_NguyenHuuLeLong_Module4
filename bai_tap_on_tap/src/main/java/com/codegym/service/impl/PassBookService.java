@@ -4,6 +4,8 @@ import com.codegym.model.PassBook;
 import com.codegym.repositoty.IPassBookRepository;
 import com.codegym.service.IPassBookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,7 +36,7 @@ public class PassBookService implements IPassBookService {
     }
 
     @Override
-    public List<PassBook> findByName(String keyword) {
-        return iPassBookRepository.findAllByCustomer_NameContaining(keyword);
+    public Page<PassBook> findByName(String keyword, Pageable pageable) {
+        return iPassBookRepository.findAllByCustomer_NameContaining(keyword,pageable);
     }
 }

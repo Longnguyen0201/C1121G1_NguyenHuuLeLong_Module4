@@ -1,7 +1,7 @@
 package com.codegym.controller;
 
+import com.codegym.service.ISmartPhoneService;
 import com.codegym.model.Smartphone;
-import com.codegym.service.ISmartphoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,26 +14,26 @@ import java.util.Optional;
 @RequestMapping("/smartphones")
 @CrossOrigin("*")
 public class SmartphoneController {
-
     @Autowired
-    private ISmartphoneService smartphoneService;
+    private ISmartPhoneService smartphoneService;
 
-    @GetMapping
+    @PostMapping("/create")
+    public ResponseEntity<Smartphone> createSmartphone(@RequestBody Smartphone smartphone) {
+        return new ResponseEntity<>(smartphoneService.save(smartphone), HttpStatus.CREATED);
+    }
+//    @GetMapping("/list")
+//    public ModelAndView getAllSmartphonePage() {
+//        ModelAndView modelAndView = new ModelAndView("/phones/list");
+//        modelAndView.addObject("smartphones", smartphoneService.findAll());
+//        return modelAndView;
+//    }
+
+    @GetMapping("/list")
     public ResponseEntity<Iterable<Smartphone>> allPhones() {
         return new ResponseEntity<>(smartphoneService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Smartphone> createSmartphone(@RequestBody Smartphone smartphone) {
-        return new ResponseEntity<>(smartphoneService.save(smartphone), HttpStatus.CREATED);
-    }
 
-    @GetMapping("/list")
-    public ModelAndView getAllSmartphonePage() {
-        ModelAndView modelAndView = new ModelAndView("/phones/list");
-        modelAndView.addObject("smartphones", smartphoneService.findAll());
-        return modelAndView;
-    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Smartphone> deleteSmartphone(@PathVariable Long id) {
@@ -43,5 +43,20 @@ public class SmartphoneController {
         }
         smartphoneService.remove(id);
         return new ResponseEntity<>(smartphoneOptional.get(), HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Smartphone> findPhoneById(@PathVariable("id") Long id) {
+        Optional<Smartphone> phoneOptional = smartphoneService.findById(id);
+        if (!phoneOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        };
+        return new ResponseEntity<>(phoneOptional.get(), HttpStatus.OK);
+    }
+
+    @PatchMapping(value = "/update")
+    public ResponseEntity<Void> update(@RequestBody Smartphone phoneUpdate) {
+        smartphoneService.save(phoneUpdate);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

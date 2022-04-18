@@ -3,7 +3,7 @@ package com.codegym.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="smartphones")
+@Table(name = "smartphones")
 public class Smartphone {
 
     @Id
@@ -14,12 +14,6 @@ public class Smartphone {
     private double price;
 
     public Smartphone() {
-    }
-
-    public Smartphone(String producer, String model, double price) {
-        this.producer = producer;
-        this.model = model;
-        this.price = price;
     }
 
     public Long getId() {
@@ -58,5 +52,4 @@ public class Smartphone {
     public String toString() {
         return producer+": "+model+" with price "+price;
     }
-
 }
