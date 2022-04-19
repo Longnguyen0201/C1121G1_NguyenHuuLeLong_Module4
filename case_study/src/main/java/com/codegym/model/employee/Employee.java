@@ -1,7 +1,10 @@
 package com.codegym.model.employee;
 
+import com.codegym.model.contract.Contract;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 public class Employee {
@@ -14,7 +17,7 @@ public class Employee {
     private String employeeName;
 
     @NotNull
-    @Column(name = "employee_brithday",columnDefinition = "date")
+    @Column(name = "employee_birthday",columnDefinition = "date")
     private String employeeBirthday;
 
     @NotNull
@@ -49,6 +52,9 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "division_id", referencedColumnName = "division_id")
     private Division division;
+
+    @OneToMany(mappedBy = "employee")
+    private Set<Contract> contracts;
 
 
 

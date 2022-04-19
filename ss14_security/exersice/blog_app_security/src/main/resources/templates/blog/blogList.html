@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+</head>
+<body>
+<th:block th:include="/_menu"></th:block>
+<h3>Blog List</h3>
+<p>
+    <a th:if="${#request.userPrincipal != null}" th:href="@{/create}">Add new</a>
+<!--    <a th:href="@{/create}">-->
+<!--        Add new Song-->
+<!--    </a>-->
+</p>
+<form action="/blog" method="get" >
+    <input type="text" name="keyword"  placeholder="search blog"/>
+    <input type="submit"  value="Search">
+</form>
+<table id = "products">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Content</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog,loop : ${blogList}">
+        <td th:text="${loop.count}"></td>
+        <td th:if="${blog.category}" th:text="${blog.category.name}"></td>
+        <td th:text="${blog.author}"></td>
+        <td th:text="${blog.contentes}"></td>
+        <td><a th:href="@{/edit/{id}(id=${blog.id})}">edit</a></td>
+        <td><a th:href="@{/delete/{id}(id=${blog.id})}">delete</a></td>
+        <td><a th:href="@{/view/{id}(id=${blog.id})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:if ="${blogList.hasPrevious()}" th:href="@{/blog(page=${blogList.number - 1},keyword=${keyWordValue})}">Previous</a>
+    <span th:text="${blogList.number + 1 }"></span>
+    <span th:text="${blogList.totalPages }"></span>
+    <a th:if ="${blogList.hasNext()}" th:href="@{/blog(page=${blogList.number + 1},keyword=${keyWordValue})}">Next</a>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

@@ -1,7 +1,10 @@
 package com.codegym.model.customer;
 
+import com.codegym.model.contract.Contract;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 public class Customer {
@@ -44,6 +47,10 @@ public class Customer {
     @ManyToOne
     @JoinColumn(name = "customer_type_id", referencedColumnName = "customer_type_id")
     private CustomerType customerType;
+
+
+    @OneToMany(mappedBy = "customer")
+    private Set<Contract> contracts;
 
     public Customer() {
     }
