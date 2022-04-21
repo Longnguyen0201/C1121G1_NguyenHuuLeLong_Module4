@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">>
+<head th:replace="/customer/create :: header">
+<body>
+<div class="container-lg">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="contact-form">
+                <h1>Add new Service</h1>
+                <form th:action="@{/services/save}" th:object="${serviceDto}" method="post" novalidate="novalidate">
+                    <div class="form-group">
+                        <label>Customer Type: </label>
+                        <select th:field="*{serviceType}" class="form-control">
+                            <option th:each="serviceType : ${serviceTypeList}" th:value="${serviceType.serviceTypeId}"
+                                    th:text="${serviceType.serviceTypeName}"></option>
+                            <div style="color: red" th:errors="*{serviceType}"></div>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label>Service Code: </label>
+                                <input type="text" name="author" class="form-control" th:field="*{serviceCode}"
+                                       required/>
+                                <div style="color: red" th:errors="*{serviceCode}"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label>Service name: </label>
+                                <input type="text" name="author" class="form-control" th:field="*{serviceName}"
+                                       required/>
+                                <div style="color: red" th:errors="*{serviceName}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Service Area</label>
+                                <input type="text" name="content" class="form-control" th:field="*{serviceArea}"
+                                       required/>
+                                <div style="color: red" th:errors="*{serviceArea}"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Service Cost </label>
+                                <input type="text" name="content" class="form-control" th:field="*{serviceCost}"
+                                       required/>
+                                <div style="color: red" th:errors="*{serviceCost}"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Number of users: </label>
+                                <input type="text" name="content" class="form-control" th:field="*{serviceMaxPeople}"
+                                       required/>
+                                <div style="color: red" th:errors="*{serviceMaxPeople}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Standard Room: </label>
+                        <input type="text" name="content" class="form-control" th:field="*{standardRoom}" required/>
+                        <div style="color: red" th:errors="*{standardRoom}"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description Other </label>
+                        <input type="text" name="content" class="form-control" th:field="*{descriptionOther}" required/>
+                        <div style="color: red" th:errors="*{descriptionOther}"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Pool Area</label>
+                                <input type="text" name="content" class="form-control" th:field="*{poolArea}"
+                                       required/>
+                                <div style="color: red" th:errors="*{poolArea}"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Number of Floors </label>
+                                <input type="text" name="content" class="form-control" th:field="*{numberOfFloors}"
+                                       required/>
+                                <div style="color: red" th:errors="*{numberOfFloors}"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Rent Type:  </label>
+                                <select th:field="*{rentType}" class="form-control">
+                                    <option th:each="rentType : ${rentTypeList}" th:value="${rentType.rentTypeId}"
+                                            th:text="${rentType.rentTypeName}"></option>
+                                    <div style="color: red" th:errors="*{serviceType}"></div>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a href="/services" class="btn btn-primary"> Close
+                        </a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

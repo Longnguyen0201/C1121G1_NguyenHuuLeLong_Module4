@@ -6,4 +6,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface IServiceServices {
     Page<Service> findAllPaingSearch(Pageable pageable, String keywordValue);
+
+    void save(Service service);
 }

@@ -16,4 +16,9 @@ public class ServiceServices implements IServiceServices {
     public Page<com.codegym.model.service.Service> findAllPaingSearch(Pageable pageable, String keywordValue) {
         return iServiceRepository.findAllByServiceNameContaining(pageable, keywordValue);
     }
+
+    @Override
+    public void save(com.codegym.model.service.Service service) {
+        iServiceRepository.save(service);
+    }
 }

@@ -19,6 +19,7 @@ public class ServiceType {
     public ServiceType() {
     }
 
+
     public Integer getServiceTypeId() {
         return serviceTypeId;
     }
