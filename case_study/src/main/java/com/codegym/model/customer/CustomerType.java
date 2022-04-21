@@ -20,6 +20,11 @@ public class CustomerType {
     public CustomerType() {
     }
 
+    public CustomerType(Integer customerTypeId, String customerTypeName) {
+        this.customerTypeId = customerTypeId;
+        this.customerTypeName = customerTypeName;
+    }
+
     public Integer getCustomerTypeId() {
         return customerTypeId;
     }

@@ -1,6 +1,7 @@
 package com.codegym.model.employee;
 
 import com.codegym.model.contract.Contract;
+import com.codegym.model.employee.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,32 +11,21 @@ import java.util.Set;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employee_id")
+    @Column(name = "employee_id" )
     private Integer employeeId;
     @NotNull
-    @Column(name = "employee_name")
     private String employeeName;
 
     @NotNull
     @Column(name = "employee_birthday",columnDefinition = "date")
     private String employeeBirthday;
-
     @NotNull
-    @Column(name = "employee_id_card")
     private String employeeIdCard;
-
     @NotNull
-    @Column(name = "employee_salary")
     private Double employeeSalary;
-
     @NotNull
-    @Column(name = "employee_phone")
     private String employeePhone;
-
-    @Column(name = "employee_email")
     private String employeeEmail;
-
-    @Column(name = "employee_address")
     private String employeeAddress;
 
     @NotNull
@@ -53,9 +43,118 @@ public class Employee {
     @JoinColumn(name = "division_id", referencedColumnName = "division_id")
     private Division division;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "username",referencedColumnName = "username")
+    private User user;
+
     @OneToMany(mappedBy = "employee")
     private Set<Contract> contracts;
 
+    public Employee() {
 
+    }
 
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    public String getEmployeeBirthday() {
+        return employeeBirthday;
+    }
+
+    public void setEmployeeBirthday(String employeeBirthday) {
+        this.employeeBirthday = employeeBirthday;
+    }
+
+    public String getEmployeeIdCard() {
+        return employeeIdCard;
+    }
+
+    public void setEmployeeIdCard(String employeeIdCard) {
+        this.employeeIdCard = employeeIdCard;
+    }
+
+    public Double getEmployeeSalary() {
+        return employeeSalary;
+    }
+
+    public void setEmployeeSalary(Double employeeSalary) {
+        this.employeeSalary = employeeSalary;
+    }
+
+    public String getEmployeePhone() {
+        return employeePhone;
+    }
+
+    public void setEmployeePhone(String employeePhone) {
+        this.employeePhone = employeePhone;
+    }
+
+    public String getEmployeeEmail() {
+        return employeeEmail;
+    }
+
+    public void setEmployeeEmail(String employeeEmail) {
+        this.employeeEmail = employeeEmail;
+    }
+
+    public String getEmployeeAddress() {
+        return employeeAddress;
+    }
+
+    public void setEmployeeAddress(String employeeAddress) {
+        this.employeeAddress = employeeAddress;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public EducationDegree getEducationDegree() {
+        return educationDegree;
+    }
+
+    public void setEducationDegree(EducationDegree educationDegree) {
+        this.educationDegree = educationDegree;
+    }
+
+    public Division getDivision() {
+        return division;
+    }
+
+    public void setDivision(Division division) {
+        this.division = division;
+    }
+
+    public Set<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Set<Contract> contracts) {
+        this.contracts = contracts;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

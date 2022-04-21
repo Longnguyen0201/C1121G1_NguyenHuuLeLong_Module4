@@ -10,7 +10,6 @@ public class EducationDegree {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "education_degree_id")
     private Integer educationDegreeId;
-    @Column(name = "education_degree_name")
     private String educationDegreeName;
 
     @OneToMany(mappedBy = "educationDegree")

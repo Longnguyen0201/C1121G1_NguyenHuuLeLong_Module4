@@ -1,0 +1,184 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Management Application</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        nav {
+            background-color: #046056;
+        }
+
+        nav a {
+            color: white;
+        }
+
+        .paing {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md ">
+    <div class="container">
+        <a class="navbar-brand" href="/home">Furama</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse " id="navbarsExampleDefault">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/employees">Employee</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/customers">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/services">Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contracts">Contract</a>
+                </li>
+            </ul>
+        </div>
+        <form method="get" class="form-inline my-2 my-lg-0" action="/employees/list">
+            <div class="input-group input-group-sm">
+                <input type="text" class="form-control" aria-label="Small"
+                       aria-describedby="inputGroup-sizing-sm" th:placeholder="${keyword}" name="keyword">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-secondary btn-number">
+                        <!--                        <i class="mdi mdi-search"></i>-->
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>
+<div th:align="center" style="margin: 10px">
+    <h2>Manager <b>Employee</b></h2>
+    <a href="/employees/create" class="btn btn-success">
+        <span>Add New Employee</span></a>
+    <!--    <a href="/customers/" class="btn btn-success" >-->
+    <!--        <span>Lists</span></a>-->
+</div>
+<div th:align="center">
+    <table id="example" class="table table-striped table-bordered ">
+        <thead>
+        <thead>
+        <tr>
+            <th>STT</th>
+            <th>Employee Name</th>
+            <th>Birthday</th>
+            <th>ID Card</th>
+            <th>Salary</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Position Type</th>
+            <th>Education Degree Type</th>
+            <th>Education Degree Type</th>
+            <th>function</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee,loop : ${employeePageList}">
+            <td th:text="${loop.count}"></td>
+            <td th:text="${employee.employeeName}"></td>
+<!--            <td th:text="${employee.customerName}"></td>-->
+            <td th:text="${employee.employeeBirthday}"></td>
+            <td th:text="${employee.employeeIdCard}"></td>
+            <td th:text="${employee.employeeSalary}"></td>
+            <td th:text="${employee.employeePhone}"></td>
+            <td th:text="${employee.employeeEmail}"></td>
+            <td th:text="${employee.employeeAddress}"></td>
+            <td th:text="${employee.position.positionName}"></td>
+            <td th:text="${employee.educationDegree.educationDegreeName}"></td>
+            <td th:text="${employee.division.divisionName}"></td>
+            <td colspan="2">
+                <a th:href="@{/employees/edit/{id}(id=${employee.employeeId})}">
+                    <i class="material-icons" style="color: dodgerblue">&#xE254;</i></a>
+                <!--                <a type="button" data-toggle="modal" data-target="#exampleModal" onclick="getID($(this))"-->
+                <!--                   th:data-id="${customer.customerId}">-->
+                <!--                    <i class="material-icons" style="color: #E34724">&#xE872;</i> xóa-->
+                <!--                </a>-->
+                <a data-toggle="modal"
+                   href="#exampleModal" th:data-id="${employee.employeeId}"
+                   th:data-name="${employee.employeeName}"
+                   onclick="getID($(this))">
+                    <i class="material-icons" style="color: #E34724">&#xE872;</i>
+                </a>
+            </td>
+            <!--            <td><a th:href="@{/edit/{id}(id=${customer.customerId})}">edit</a></td>-->
+            <!--            <td><a th:href="@{/delete/{id}(id=${customer.customerId})}">delete</a></td>-->
+            <!--            <td><a th:href="@{/view/{id}(id=${customer.customerId})}">view</a></td>-->
+        </tr>
+        </tbody>
+    </table>
+    <div class="paing">
+        <a th:if="${employeePageList.hasPrevious()}"
+           th:href="@{/employees(page=${employeePageList.number - 1},keyword=${keyword})}">Previous</a>
+        <span th:text="${employeePageList.number + 1 }"></span>/
+        <span th:text="${employeePageList.totalPages }"></span>
+        <a th:if="${employeePageList.hasNext()}"
+           th:href="@{/employees(page=${employeePageList.number + 1},keyword=${keyword})}">Next</a>
+    </div>
+    <h2>
+        <a href="/home" style="color: cornflowerblue">Back to homepage</a>
+    </h2>
+
+    <!--    Modal-->
+
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" action="/employees/delete">
+                <input type="hidden" name="idDelete" id="modalDelete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete customer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Do you want to delete the customer?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script>
+    function getID(a) {
+        let id = a.attr('data-id')
+        document.getElementById('modalDelete').value = id;
+    }
+</script>
+
+</html>

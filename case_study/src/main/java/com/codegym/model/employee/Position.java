@@ -9,7 +9,6 @@ public class Position {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="position_id")
     private Integer positionId;
-    @Column(name="position_name")
     private String positionName;
     @OneToMany(mappedBy ="position")
     private Set<Employee>  employees;

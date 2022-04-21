@@ -1,0 +1,14 @@
+.background_img {
+    background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-s/01/e8/d4/8e/view-of-the-infinity.jpg?w=600&h=300&s=1'),
+    url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4yjjSWHpR14FbWzkgdOS_ti4kqAUvVTTdaOlUEQ3sEg1H9BFYrog_Ql5FCvgKPoXBpvk&usqp=CAU");
+    margin-bottom: 0px;
+}
+nav {
+    background-color: #046056;
+}
+.footer-background{
+    background-color:#50C7B3;
+}
+a{
+    color: white;
+}

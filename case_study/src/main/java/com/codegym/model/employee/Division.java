@@ -5,14 +5,13 @@ import java.util.Set;
 
 @Entity
 public class Division {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column (name = "division_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "division_id")
     private Integer divisionId;
-    @Column (name = "division_name")
     private String divisionName;
     @OneToMany(mappedBy = "division")
-    private Set<Employee> employees ;
+    private Set<Employee> employees;
 
     public Division() {
     }

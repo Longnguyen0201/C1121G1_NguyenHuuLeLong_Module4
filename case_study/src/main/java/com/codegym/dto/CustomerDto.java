@@ -1,58 +1,36 @@
-package com.codegym.model.customer;
+package com.codegym.dto;
 
-import com.codegym.model.contract.Contract;
+import com.codegym.model.customer.CustomerType;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
+import javax.validation.constraints.Pattern;
 
-@Entity
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
+public class CustomerDto implements Validator {
+
     private Integer customerId;
-
-    @Column(name = "customer_code")
-    @NotNull
+    @NotEmpty(message = "Please,Enter customer code! ")
+    @Pattern(regexp = "(^$|(^KH-\\d{4}$))", message = "Please,Enter the code in the correct format (ex: KH-xxxx) ")
     private String customerCode;
-
-    @Column(name = "customer_name")
-    @NotNull
+    @NotEmpty(message = "Please,Enter customer name! ")
     private String customerName;
-
-    @NotNull
-    @Column(name = "customer_birthday")
+    @NotEmpty(message = "Please,Enter customer birthday! ")
     private String customerBirthday;
-
     @NotNull
-    @Column(name = "customer_gender", columnDefinition = "bit(1)")
     private Integer customerGender;
-
-    @NotNull
-    @Column(name = "customer_id_card")
+    @NotEmpty (message = "Please,Enter customer ID card!")
     private String customerIDCard;
-
-    @NotNull
-    @Column(name = "customer_phone")
+    @NotEmpty (message = "Please,Enter customer phone!")
     private String customerPhone;
-
-    @Column(name = "customer_email")
     private String customerEmail;
-
-    @Column(name = "customer_address")
     private String customerAddress;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "customer_type_id", referencedColumnName = "customer_type_id")
     private CustomerType customerType;
 
-
-    @OneToMany(mappedBy = "customer")
-    private Set<Contract> contracts;
-
-    public Customer() {
+    public CustomerDto() {
     }
 
     public Integer getCustomerId() {
@@ -70,7 +48,6 @@ public class Customer {
     public void setCustomerCode(String customerCode) {
         this.customerCode = customerCode;
     }
-
 
     public String getCustomerName() {
         return customerName;
@@ -136,11 +113,12 @@ public class Customer {
         this.customerType = customerType;
     }
 
-    public Set<Contract> getContracts() {
-        return contracts;
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
     }
 
-    public void setContracts(Set<Contract> contracts) {
-        this.contracts = contracts;
+    @Override
+    public void validate(Object target, Errors errors) {
     }
 }
