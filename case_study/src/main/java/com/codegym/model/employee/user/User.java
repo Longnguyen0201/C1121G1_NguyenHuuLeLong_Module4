@@ -11,7 +11,7 @@ public class User {
     @GeneratedValue
     @Column(name = "User_Id", nullable = false)
     private Integer userId;
-    private String userName;
+    private String username;
     private String password;
     @OneToOne(mappedBy = "user")
     private Employee employee;
@@ -19,6 +19,17 @@ public class User {
     private Set<UserRole> useRoles;
 
     public User() {
+    }
+
+    public User(Integer userId, String username, String password) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public Employee getEmployee() {
@@ -45,12 +56,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getPassword() {

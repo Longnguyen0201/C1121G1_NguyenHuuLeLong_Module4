@@ -8,8 +8,9 @@
     <div class="row">
         <div class="col-md-8 mx-auto">
             <div class="contact-form">
-                <h1>Add new customer</h1>
-                <form th:action="@{/employees/save}" th:object="${employeeDto}" method="post" novalidate="novalidate">
+                <h1>Update Employee</h1>
+                <form th:action="@{/employees/update}" th:object="${employeeDto}" method="post" novalidate="novalidate">
+                    <input th:type="hidden" th:field="*{employeeId}">
                     <div class="form-group">
                         <label> Employee Name: </label>
                         <input type="text" name="author" class="form-control" th:field="*{employeeName}"

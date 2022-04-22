@@ -55,8 +55,6 @@ public class CustomerController {
     public ModelAndView showFormCreateCustomer() {
         ModelAndView modelAndView = new ModelAndView("/customer/create");
         modelAndView.addObject("customerDto", new CustomerDto());
-//        List<CustomerType> customerTypeList = iCustomerTypeService.findAll();
-//        modelAndView.addObject("customerTypeObj", customerTypeList);
         return modelAndView;
     }
 
@@ -91,11 +89,11 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/edit")
-    public ModelAndView editBlog(@ModelAttribute("customerDto") CustomerDto customerDto, BindingResult bindingResult) {
+    public ModelAndView editCustomer(@ModelAttribute("customerDto") CustomerDto customerDto, BindingResult bindingResult) {
         ModelAndView modelAndView;
         customerDto.validate(customerDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
-            modelAndView = new ModelAndView("/edit");
+            modelAndView = new ModelAndView("/customer/edit");
             return modelAndView;
         }
         Customer customer = new Customer();
@@ -103,7 +101,7 @@ public class CustomerController {
 
         customer.setCustomerType(customerDto.getCustomerType());
         iCustomerService.save(customer);
-        modelAndView = new ModelAndView("redirect:/list");
+        modelAndView = new ModelAndView("redirect:/customers");
         return modelAndView;
     }
 

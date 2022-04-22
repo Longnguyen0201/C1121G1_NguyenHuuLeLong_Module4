@@ -8,16 +8,18 @@
             <div class="contact-form">
                 <h1>Add new Service</h1>
                 <form th:action="@{/services/save}" th:object="${serviceDto}" method="post" novalidate="novalidate">
+<!--                    <input type="hidden" th:value="${serviceTypeIdNow}" id="idNow" name="idNow">-->
                     <div class="form-group">
-                        <label>Customer Type: </label>
-                        <select th:field="*{serviceType}" class="form-control">
-                            <option th:each="serviceType : ${serviceTypeList}" th:value="${serviceType.serviceTypeId}"
+                        <label>Service Type: </label>
+                        <select th:field="*{serviceType}" class="form-control" id="id-serviceType">
+                            <option  th:each="serviceType : ${serviceTypeList}" th:if="${serviceType.serviceTypeId==typeId}"
+                                     th:value="${serviceType.serviceTypeId}"
                                     th:text="${serviceType.serviceTypeName}"></option>
                             <div style="color: red" th:errors="*{serviceType}"></div>
                         </select>
                     </div>
                     <div class="row">
-                        <div class="col-sm-5">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label>Service Code: </label>
                                 <input type="text" name="author" class="form-control" th:field="*{serviceCode}"
@@ -25,7 +27,7 @@
                                 <div style="color: red" th:errors="*{serviceCode}"></div>
                             </div>
                         </div>
-                        <div class="col-sm-7">
+                        <div class="col-sm-8">
                             <div class="form-group">
                                 <label>Service name: </label>
                                 <input type="text" name="author" class="form-control" th:field="*{serviceName}"
@@ -70,31 +72,29 @@
                         <input type="text" name="content" class="form-control" th:field="*{descriptionOther}" required/>
                         <div style="color: red" th:errors="*{descriptionOther}"></div>
                     </div>
+                    <div class="form-group">
+                        <label>Rent Type: </label>
+                        <select th:field="*{rentType}" class="form-control">
+                            <option th:each="rentType : ${rentTypeList}" th:value="${rentType.rentTypeId}"
+                                    th:text="${rentType.rentTypeName}"></option>
+                            <div style="color: red" th:errors="*{serviceType}"></div>
+                        </select>
+                    </div>
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
+                        <div class="col-sm-6" th:if="${typeId==1}">
+                            <div class="form-group" id="poolArea">
                                 <label>Pool Area</label>
                                 <input type="text" name="content" class="form-control" th:field="*{poolArea}"
                                        required/>
                                 <div style="color: red" th:errors="*{poolArea}"></div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
+                        <div class="col-sm-6" th:if="${!(typeId==3)}">
+                            <div class="form-group" id="numberOfFloors">
                                 <label>Number of Floors </label>
                                 <input type="text" name="content" class="form-control" th:field="*{numberOfFloors}"
                                        required/>
                                 <div style="color: red" th:errors="*{numberOfFloors}"></div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label>Rent Type:  </label>
-                                <select th:field="*{rentType}" class="form-control">
-                                    <option th:each="rentType : ${rentTypeList}" th:value="${rentType.rentTypeId}"
-                                            th:text="${rentType.rentTypeName}"></option>
-                                    <div style="color: red" th:errors="*{serviceType}"></div>
-                                </select>
                             </div>
                         </div>
                     </div>
@@ -108,5 +108,28 @@
         </div>
     </div>
 </div>
+
 </body>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<!--<script>-->
+<!--    // $(document).ready(function () {-->
+<!--    //     // let typeId = $('#idNow').val();-->
+<!--    //     // console.log(typeId);-->
+<!--    //     $('#id-serviceType').change(function () {-->
+<!--    //           let typeId = ($('#id-serviceType').val());-->
+<!--    //           // $('#idNow').val(typeId) ;-->
+<!--    //         if (typeId == 3 | typeId == 2) {-->
+<!--    //             $('#poolArea').hide();-->
+<!--    //         } else {-->
+<!--    //             $('#poolArea').show();-->
+<!--    //         }-->
+<!--    //         if (typeId == 3) {-->
+<!--    //             $('#numberOfFloors').hide();-->
+<!--    //         } else {-->
+<!--    //             $('#numberOfFloors').show();-->
+<!--    //         }-->
+<!--    //     });-->
+<!--    // });-->
+<!--</script>-->
 </html>

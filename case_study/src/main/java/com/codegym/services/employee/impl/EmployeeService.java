@@ -17,4 +17,19 @@ public class EmployeeService implements IEmployeeService {
     public Page<Employee> findAllPaingSearch(Pageable pageable, String keywordValue) {
         return iEmployeeRepository.findAllByEmployeeNameContaining(pageable,keywordValue);
     }
+
+    @Override
+    public void save(Employee employee) {
+        iEmployeeRepository.save(employee);
+    }
+
+    @Override
+    public Employee findById(Integer id) {
+        return iEmployeeRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void remove(Integer idDelete) {
+        iEmployeeRepository.deleteById(idDelete);
+    }
 }

@@ -1,57 +1,48 @@
-package com.codegym.model.employee;
+package com.codegym.dto;
 
 import com.codegym.model.contract.Contract;
+import com.codegym.model.employee.Division;
+import com.codegym.model.employee.EducationDegree;
+import com.codegym.model.employee.Position;
 import com.codegym.model.employee.user.User;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Set;
 
-@Entity
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employee_id" )
-    private Integer employeeId;
-    @NotNull
-    private String employeeName;
+public class EmployeeDto implements Validator {
 
-    @NotNull
-    @Column(name = "employee_birthday",columnDefinition = "date")
+    private Integer employeeId;
+    @NotEmpty(message = "Please,Enter employee name! ")
+    @Pattern(regexp = "(^$|^[\\p{Lu}\\p{Ll}]+( [\\p{Lu}\\p{Ll}]+)*$)",message = "Name without special characters and numbers!")
+    private String employeeName;
+    @NotEmpty(message = "Please,Enter birthday! ")
     private String employeeBirthday;
-    @NotNull
+    @NotEmpty(message = "Please,Enter employee ID card! ")
+    @Pattern(regexp = "(^$|^(\\d{9})|(\\d{12})$)", message = "ID card must consist of 9 or 12 digits")
     private String employeeIdCard;
     @NotNull
+    @Min(0)
     private Double employeeSalary;
-    @NotNull
+    @NotEmpty
+    @Pattern(regexp = "(^$|^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$)", message = "Wrong format input phone " +
+            "(ex: 090xxxxxxx |091xxxxxxx | (84)+90xxxxxxx |(84)+91xxxxxxx ) ")
     private String employeePhone;
+    @NotEmpty
+    @Pattern(regexp = "^$|^[a-z][a-z0-9_\\.]{3,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,}){1,}$",message = "Wrong format input email")
     private String employeeEmail;
     private String employeeAddress;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "position_id", referencedColumnName = "position_id")
     private Position position;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "education_degree_id", referencedColumnName = "education_degree_id")
     private EducationDegree educationDegree;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "division_id", referencedColumnName = "division_id")
     private Division division;
-
-    @OneToOne
-    @JoinColumn(name = "username",referencedColumnName = "username")
     private User user;
-
-    @OneToMany(mappedBy = "employee")
     private Set<Contract> contracts;
 
-    public Employee() {
-
+    public EmployeeDto()  {
     }
 
     public Integer getEmployeeId() {
@@ -142,6 +133,14 @@ public class Employee {
         this.division = division;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Set<Contract> getContracts() {
         return contracts;
     }
@@ -150,11 +149,13 @@ public class Employee {
         this.contracts = contracts;
     }
 
-    public User getUser() {
-        return user;
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }

@@ -5,9 +5,7 @@ import com.codegym.model.service.ServiceType;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -19,19 +17,23 @@ public class ServiceDto implements Validator {
     @Pattern(regexp = "(^$|(^DV-\\d{4}$))", message = "Please,Enter the code in the correct format (ex: DV-xxxx) ")
     private String serviceCode;
     @NotEmpty(message = "Please,Enter service name! ")
-    @Pattern(regexp = "(^$|^[\\p{Lu}\\p{Ll}]+( [\\p{Lu}\\p{Ll}]+)*$)",message = "Name without special characters and numbers!")
     private String serviceName;
     @NotNull
+    @Min(0)
     private Double serviceArea;
     @NotNull
+    @Min(0)
     private Double serviceCost;
     @NotNull
+    @Min(0)
     private Integer serviceMaxPeople;
     private String standardRoom;
     private String descriptionOther;
     @NotNull
+    @Min(0)
     private Double poolArea;
     @NotNull
+    @Min(0)
     private Integer numberOfFloors;
     private RentType rentType;
     private ServiceType serviceType;
