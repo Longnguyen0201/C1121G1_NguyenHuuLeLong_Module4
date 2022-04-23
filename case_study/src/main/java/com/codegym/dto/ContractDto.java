@@ -1,53 +1,39 @@
-package com.codegym.model.contract;
+package com.codegym.dto;
 
-
-
+import com.codegym.model.contract.ContractDetail;
 import com.codegym.model.customer.Customer;
 import com.codegym.model.employee.Employee;
 import com.codegym.model.service.Service;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-@Entity
-public class Contract {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "contract_id")
+public class ContractDto implements Validator {
+
+
     private Integer contractId;
-    @NotEmpty
-    @Column(name = "start_date",columnDefinition = "date")
+
     private String contractStartDate;
-    @NotEmpty
-    @Column(name = "end_date",columnDefinition = "date")
+
     private String contractEndDate;
-    @NotNull
-    @Column(name = "contract_deposit")
+
     private Double contractDeposit;
-    @NotNull
-    @Column(name = "contract_total_money")
+
     private Double contractTotalMoney;
 
-   @NotNull
-    @ManyToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+
     private Employee employee;
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+
     private Customer customer;
 
-   @NotNull
-    @ManyToOne
-    @JoinColumn(name = "service_id", referencedColumnName = "service_id")
-    private Service service;
-    @OneToMany(mappedBy = "contract")
-    private Set<ContractDetail> contractDetails;
 
-    public Contract() {
+    private Service service;
+
+    public ContractDto() {
     }
 
     public Integer getContractId() {
@@ -114,11 +100,13 @@ public class Contract {
         this.service = service;
     }
 
-    public Set<ContractDetail> getContractDetails() {
-        return contractDetails;
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
     }
 
-    public void setContractDetails(Set<ContractDetail> contractDetails) {
-        this.contractDetails = contractDetails;
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }

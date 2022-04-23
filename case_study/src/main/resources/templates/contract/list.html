@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head >
+<head>
     <title> Management Application</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -20,6 +20,7 @@
             justify-content: flex-end;
             padding-right: 10px;
         }
+
     </style>
 </head>
 <body>
@@ -50,7 +51,7 @@
                 </li>
             </ul>
         </div>
-        <form method="get" class="form-inline my-2 my-lg-0" action="/services/list">
+        <form method="get" class="form-inline my-2 my-lg-0" action="/contracts/list">
             <div class="input-group input-group-sm">
                 <input type="text" class="form-control" aria-label="Small"
                        aria-describedby="inputGroup-sizing-sm" th:placeholder="${keyword}" name="keyword">
@@ -65,59 +66,48 @@
     </div>
 </nav>
 <div th:align="center" style="margin: 10px">
-    <h2>Manager <b>Service</b></h2>
-<!--    <a href="/services/create" class="btn btn-success">-->
-<!--        <span>Add New Service</span></a>-->
-    <button class="btn btn-success" type="button" >
-        <a style="color: white" class="delete_btn"
-           data-toggle="modal" data-target="#createModal">FACILITY</a>
-    </button>
+    <h2>Manager <b>Contract</b></h2>
+    <a href="/contracts/create" class="btn btn-success">
+        <span>Add New Contract</span></a>
+    <!--    <a href="/customers/" class="btn btn-success" >-->
+    <!--        <span>Lists</span></a>-->
 </div>
 <div th:align="center">
     <table id="example" class="table table-striped table-bordered ">
         <thead>
+        <thead>
         <tr>
             <th>STT</th>
-            <th>Service Type</th>
-            <th>Service Code</th>
-            <th>Service Name</th>
-            <th>Service Area</th>
-            <th>Service Cost</th>
-            <th>Rent Type</th>
-            <th>Service max people</th>
-            <th>Standard Room</th>
-            <th>Description Other</th>
-            <th>Pool Area</th>
-            <th>Number Of Floors</th>
+            <th>Customer name</th>
+            <th>Employee name</th>
+            <th>Service name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Deposit</th>
+            <th>Totel money</th>
             <th>function</th>
 
         </tr>
         </thead>
         <tbody>
-        <tr th:each="service,loop : ${servicePageList}">
+        <tr th:each="contract,loop : ${contractPageList}">
             <td th:text="${loop.count}"></td>
-            <td th:text="${service.serviceType.serviceTypeName}"></td>
-            <td th:text="${service.serviceCode}"></td>
-            <td th:text="${service.serviceName}"></td>
-            <td th:text="${service.serviceArea}"></td>
-            <td th:text="${service.serviceCost}"></td>
-            <td th:text="${service.rentType.rentTypeName}"></td>
-            <td th:text="${service.serviceMaxPeople}"></td>
-            <td th:text="${service.standardRoom}"></td>
-            <td th:text="${service.descriptionOther}"></td>
-            <td th:text="${service.poolArea}"></td>
-            <td th:text="${service.numberOfFloors}"></td>
-
+            <td th:text="${contract.customer.customerName}"></td>
+            <td th:text="${contract.employee.employeeName}"></td>
+            <td th:text="${contract.service.serviceName}"></td>
+            <td th:text="${contract.contractStartDate}"></td>
+            <td th:text="${contract.contractEndDate}"></td>
+            <td th:text="${contract.contractDeposit}"></td>
+            <td th:text="${contract.contractTotalMoney}"></td>
             <td colspan="2">
-                <a th:href="@{/services/edit/{id}(id=${service.serviceId})}">
+                <a th:href="@{/contracs/edit/{id}(id=${contract.contractId})}">
                     <i class="material-icons" style="color: dodgerblue">&#xE254;</i></a>
                 <!--                <a type="button" data-toggle="modal" data-target="#exampleModal" onclick="getID($(this))"-->
                 <!--                   th:data-id="${customer.customerId}">-->
                 <!--                    <i class="material-icons" style="color: #E34724">&#xE872;</i> xóa-->
                 <!--                </a>-->
                 <a data-toggle="modal"
-                   href="#exampleModal" th:data-id="${service.serviceId}"
-                   th:data-name="${service.serviceName}"
+                   href="#exampleModal" th:data-id="${contract.contractId}"
                    onclick="getID($(this))">
                     <i class="material-icons" style="color: #E34724">&#xE872;</i>
                 </a>
@@ -129,26 +119,25 @@
         </tbody>
     </table>
     <div class="paing">
-        <a th:if="${servicePageList.hasPrevious()}"
-           th:href="@{/services(page=${servicePageList.number - 1},keyword=${keyword})}">Previous</a>
-        <span th:text="${servicePageList.number + 1 }"></span>/
-        <span th:text="${servicePageList.totalPages }"></span>
-        <a th:if="${servicePageList.hasNext()}"
-           th:href="@{/services(page=${servicePageList.number + 1},keyword=${keyword})}">Next</a>
+        <a th:if="${contractPageList.hasPrevious()}"
+           th:href="@{/contracs(page=${contractPageList.number - 1},keyword=${keyword})}">Previous</a>
+        <span th:text="${contractPageList.number + 1 }"></span>/
+        <span th:text="${contractPageList.totalPages }"></span>
+        <a th:if="${contractPageList.hasNext()}"
+           th:href="@{/contracs(page=${contractPageList.number + 1},keyword=${keyword})}">Next</a>
     </div>
     <h2>
         <a href="/home" style="color: cornflowerblue">Back to homepage</a>
     </h2>
 
-
+    <!--    Modal-->
 
 </div>
-<!--   Modal delete-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="post" action="/employees/delete">
+            <form method="post" action="/customers/delete">
                 <input type="hidden" name="idDelete" id="modalDelete">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Delete customer</h5>
@@ -167,53 +156,6 @@
         </div>
     </div>
 </div>
-<!--Modal create-->
-<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-<!--                <input type="hidden" name="idDelete" id="modalDelete">-->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">
-                        Choose Service Type</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="display: flex; justify-content: center">
-                    <div class="btn-group">
-                    <button th:each="serviceType : ${serviceTypeList}" class="btn btn-info">
-                        <a style="color: white"  th:href="@{/services/create/{id}(id=${serviceType.serviceTypeId})}"
-                           th:text="${serviceType.serviceTypeName}"></a></button>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-        </div>
-    </div>
-</div>
-<!--<div class="modal fade" id="createModal" data-backdrop="static" data-keyboard="false" tabindex="-1"-->
-<!--     aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--                <h5 class="modal-title" id="staticBackdropLabel">CHỌN LOẠI DỊCH VỤ </h5>-->
-<!--                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>-->
-<!--&lt;!&ndash;                                <input type="hidden" id="customerDelete_id" name="customer_id">&ndash;&gt;-->
-<!--            </div>-->
-
-<!--            <div class="modal-footer">-->
-<!--                                <button type="button"  data-mdb-dismiss="modal">Close</button>-->
-<!--                                <button type="button" class="btn btn-primary" id="delete_customer_id">ok</button>-->
-<!--                <button th:each="serviceType : ${serviceTypeList}" class="btn btn-secondary">-->
-<!--                    <a th:href="@{/services/create/{id}(id=${serviceType.serviceTypeId})}"-->
-<!--                       th:text="${serviceType.serviceTypeName}"></a></button>-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

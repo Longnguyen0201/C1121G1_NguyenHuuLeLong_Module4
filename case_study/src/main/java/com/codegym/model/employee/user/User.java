@@ -8,9 +8,6 @@ import java.util.Set;
 @Entity
 public class User {
     @Id
-    @GeneratedValue
-    @Column(name = "User_Id", nullable = false)
-    private Integer userId;
     private String username;
     private String password;
     @OneToOne(mappedBy = "user")
@@ -21,11 +18,6 @@ public class User {
     public User() {
     }
 
-    public User(Integer userId, String username, String password) {
-        this.userId = userId;
-        this.username = username;
-        this.password = password;
-    }
 
     public User(String username, String password) {
         this.username = username;
@@ -46,14 +38,6 @@ public class User {
 
     public void setUseRoles(Set<UserRole> useRoles) {
         this.useRoles = useRoles;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public String getUsername() {

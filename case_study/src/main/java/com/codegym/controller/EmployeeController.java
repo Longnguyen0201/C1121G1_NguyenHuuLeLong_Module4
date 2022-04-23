@@ -132,7 +132,7 @@ public class EmployeeController {
         Division division = employeeDto.getDivision();
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
-        User user = new User(employeeDto.getUser().getUserId(),employeeDto.getEmployeeEmail(), "123456");
+        User user = new User(employeeDto.getEmployeeEmail(), "123456");
         iUserService.save(user);
         employee.setPosition(position);
         employee.setEducationDegree(educationDegree);
