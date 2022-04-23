@@ -19,6 +19,8 @@ public class Contract {
     @Column(name = "contract_id")
     private Integer contractId;
     @NotEmpty
+    private String contractCode;
+    @NotEmpty
     @Column(name = "start_date",columnDefinition = "date")
     private String contractStartDate;
     @NotEmpty
@@ -56,6 +58,14 @@ public class Contract {
 
     public void setContractId(Integer contractId) {
         this.contractId = contractId;
+    }
+
+    public String getContractCode() {
+        return contractCode;
+    }
+
+    public void setContractCode(String contractCode) {
+        this.contractCode = contractCode;
     }
 
     public String getContractStartDate() {

@@ -92,13 +92,12 @@ public class CustomerController {
     public ModelAndView editCustomer(@ModelAttribute("customerDto") CustomerDto customerDto, BindingResult bindingResult) {
         ModelAndView modelAndView;
         customerDto.validate(customerDto, bindingResult);
-        if (bindingResult.hasFieldErrors()) {
-            modelAndView = new ModelAndView("/customer/edit");
-            return modelAndView;
-        }
+                if (bindingResult.hasFieldErrors()) {
+                    modelAndView = new ModelAndView("/customer/edit");
+                    return modelAndView;
+                }
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDto, customer);
-
         customer.setCustomerType(customerDto.getCustomerType());
         iCustomerService.save(customer);
         modelAndView = new ModelAndView("redirect:/customers");

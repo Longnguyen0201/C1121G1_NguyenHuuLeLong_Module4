@@ -1,30 +1,27 @@
-package com.codegym.model.contract;
+package com.codegym.dto;
 
+import com.codegym.model.contract.AttachService;
+import com.codegym.model.contract.Contract;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-@Entity
-public class ContractDetail {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "contract_detail_id")
+public class ContractDetailDto implements Validator {
     private Integer contractDetailId;
     @NotNull
+    @Min(0)
     private Integer quantity;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "contract_id",referencedColumnName = "contract_id")
     private Contract contract;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "attach_service_id", referencedColumnName = "attach_service_id")
     private AttachService attachService;
 
-    public ContractDetail() {
+    public ContractDetailDto() {
     }
 
     public Integer getContractDetailId() {
@@ -57,5 +54,15 @@ public class ContractDetail {
 
     public void setAttachService(AttachService attachService) {
         this.attachService = attachService;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }

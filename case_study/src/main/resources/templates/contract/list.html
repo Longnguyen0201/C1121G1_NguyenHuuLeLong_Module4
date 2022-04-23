@@ -1,27 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title> Management Application</title>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        nav {
-            background-color: #046056;
-        }
-
-        nav a {
-            color: white;
-        }
-
-        .paing {
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 10px;
-        }
-
-    </style>
+<head th:replace="headList::head">
 </head>
 <body>
 <nav class="navbar navbar-expand-md ">
@@ -78,6 +56,7 @@
         <thead>
         <tr>
             <th>STT</th>
+            <th>Contract Code</th>
             <th>Customer name</th>
             <th>Employee name</th>
             <th>Service name</th>
@@ -85,13 +64,15 @@
             <th>End Date</th>
             <th>Deposit</th>
             <th>Totel money</th>
-            <th>function</th>
+            <th>Function</th>
+            <th>Delete</th>
 
         </tr>
         </thead>
         <tbody>
         <tr th:each="contract,loop : ${contractPageList}">
             <td th:text="${loop.count}"></td>
+            <td th:text="${contract.contractCode}"></td>
             <td th:text="${contract.customer.customerName}"></td>
             <td th:text="${contract.employee.employeeName}"></td>
             <td th:text="${contract.service.serviceName}"></td>
@@ -99,17 +80,17 @@
             <td th:text="${contract.contractEndDate}"></td>
             <td th:text="${contract.contractDeposit}"></td>
             <td th:text="${contract.contractTotalMoney}"></td>
-            <td colspan="2">
-                <a th:href="@{/contracs/edit/{id}(id=${contract.contractId})}">
-                    <i class="material-icons" style="color: dodgerblue">&#xE254;</i></a>
-                <!--                <a type="button" data-toggle="modal" data-target="#exampleModal" onclick="getID($(this))"-->
-                <!--                   th:data-id="${customer.customerId}">-->
-                <!--                    <i class="material-icons" style="color: #E34724">&#xE872;</i> xóa-->
-                <!--                </a>-->
+            <td>
+                <a th:href="@{/contractDetails/view/{id}(id=${contract.contractId})}">
+                    <i class="fa-solid fa-ellipsis material-icons"></i></a><span></span>
+                <a th:href="@{/contractDetails/addContractDetail/{id}(id=${contract.contractId})}">
+                    <i class="fa-solid fa-plus material-icons"></i></a>
+            </td>
+            <td>
                 <a data-toggle="modal"
                    href="#exampleModal" th:data-id="${contract.contractId}"
                    onclick="getID($(this))">
-                    <i class="material-icons" style="color: #E34724">&#xE872;</i>
+                    <i class=" material-icons" style="color: #E34724">&#xE872;</i>
                 </a>
             </td>
             <!--            <td><a th:href="@{/edit/{id}(id=${customer.customerId})}">edit</a></td>-->

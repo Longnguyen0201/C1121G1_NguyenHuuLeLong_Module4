@@ -16,6 +16,7 @@ public class ContractDto implements Validator {
 
 
     private Integer contractId;
+     private String contractCode;
 
     private String contractStartDate;
 
@@ -42,6 +43,14 @@ public class ContractDto implements Validator {
 
     public void setContractId(Integer contractId) {
         this.contractId = contractId;
+    }
+
+    public String getContractCode() {
+        return contractCode;
+    }
+
+    public void setContractCode(String contractCode) {
+        this.contractCode = contractCode;
     }
 
     public String getContractStartDate() {
