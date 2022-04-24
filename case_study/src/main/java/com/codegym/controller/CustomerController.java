@@ -1,8 +1,11 @@
 package com.codegym.controller;
 
 import com.codegym.dto.CustomerDto;
+import com.codegym.model.contract.Contract;
 import com.codegym.model.customer.Customer;
 import com.codegym.model.customer.CustomerType;
+import com.codegym.services.contract.IContractDetailService;
+import com.codegym.services.contract.IContractService;
 import com.codegym.services.customer.ICustomerService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,6 +113,8 @@ public class CustomerController {
         iCustomerService.remove(idDelete);
         return "redirect:/customers";
     }
+
+
 
 
 }

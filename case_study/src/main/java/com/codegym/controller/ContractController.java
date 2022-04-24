@@ -85,5 +85,13 @@ public class ContractController {
         modelAndView = new ModelAndView("redirect:/contracts");
         return modelAndView;
     }
+    @GetMapping(value = "customerUserService")
+    public ModelAndView customerUserService(@PageableDefault(value = 2) Pageable pageable){
+        ModelAndView modelAndView =new ModelAndView("/customer/customerUserService");
+        Page<Contract> contractList = iContractService.findAll(pageable);
+        modelAndView.addObject("contractList",contractList);
+        return modelAndView;
+    }
+
 
 }

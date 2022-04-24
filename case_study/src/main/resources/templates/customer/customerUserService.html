@@ -29,13 +29,13 @@
                 </li>
             </ul>
         </div>
-        <form method="get" class="form-inline my-2 my-lg-0" action="/customers/list">
+        <form method="get" class="form-inline my-2 my-lg-0" action="/employees/list">
             <div class="input-group input-group-sm">
                 <input type="text" class="form-control" aria-label="Small"
-                       aria-describedby="inputGroup-sizing-sm" th:placeholder="${keyword}" name="keyword">
+                       aria-describedby="inputGroup-sizing-sm"  name="keyword">
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-secondary btn-number">
-<!--                        <i class="mdi mdi-search"></i>-->
+                        <!--                        <i class="mdi mdi-search"></i>-->
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
@@ -44,9 +44,9 @@
     </div>
 </nav>
 <div th:align="center" style="margin: 10px">
-    <h2>Manager <b>Customer</b></h2>
-    <a href="/customers/create" class="btn btn-success">
-        <span>Add New Customer</span></a>
+    <h2>Manager <b>Employee</b></h2>
+    <a href="/employees/create" class="btn btn-success">
+        <span>Add New Employee</span></a>
     <!--    <a href="/customers/" class="btn btn-success" >-->
     <!--        <span>Lists</span></a>-->
 </div>
@@ -56,64 +56,40 @@
         <thead>
         <tr>
             <th>STT</th>
-            <th>Customer cde</th>
-            <th>Name</th>
-            <th>Birthday</th>
-            <th>Gender</th>
+            <th>Customer Code</th>
+            <th>Customer Name</th>
             <th>ID Card</th>
             <th>Phone</th>
             <th>Email</th>
-            <th>Service name</th>
-            <th>Service name</th>
-
-            <th>Customer Type</th>
-            <th>function</th>
+            <th>Rental service</th>
+            <th>Lease start date</th>
+            <th>Lease end date</th>
+            <th>Total Money</th>
 
         </tr>
         </thead>
         <tbody>
-        <tr th:each="customer,loop : ${customerPageList}">
+        <tr th:each="contract,loop : ${contractList}">
             <td th:text="${loop.count}"></td>
-            <td th:text="${customer.customerCode}"></td>
-            <td th:text="${customer.customerName}"></td>
-            <td th:text="${customer.customerBirthday}"></td>
-            <td th:switch="${customer.customerGender}">
-                <span th:case="1" th:text="Nam"></span>
-                <span th:case="0" th:text="Nữ"></span>
-                <span th:case="2" th:text="Khác"></span>
-            </td>
-            <td th:text="${customer.customerIDCard}"></td>
-            <td th:text="${customer.customerPhone}"></td>
-            <td th:text="${customer.customerEmail}"></td>
-            <td th:text="${customer.customerAddress}"></td>
-            <td th:text="${customer.customerType.customerTypeName}"></td>
-            <td colspan="2">
-                <a th:href="@{/customers/edit/{id}(id=${customer.customerId})}">
-                    <i class="material-icons" style="color: dodgerblue">&#xE254;</i></a>
-                <!--                <a type="button" data-toggle="modal" data-target="#exampleModal" onclick="getID($(this))"-->
-                <!--                   th:data-id="${customer.customerId}">-->
-                <!--                    <i class="material-icons" style="color: #E34724">&#xE872;</i> xóa-->
-                <!--                </a>-->
-                <a data-toggle="modal"
-                   href="#exampleModal" th:data-id="${customer.customerId}"
-                   th:data-name="${customer.customerName}"
-                   onclick="getID($(this))">
-                    <i class="material-icons" style="color: #E34724">&#xE872;</i>
-                </a>
-            </td>
-            <!--            <td><a th:href="@{/edit/{id}(id=${customer.customerId})}">edit</a></td>-->
-            <!--            <td><a th:href="@{/delete/{id}(id=${customer.customerId})}">delete</a></td>-->
-            <!--            <td><a th:href="@{/view/{id}(id=${customer.customerId})}">view</a></td>-->
+            <td th:text="${contract.customer.customerCode}"></td>
+            <td th:text="${contract.customer.customerName}"></td>
+            <td th:text="${contract.customer.customerIDCard}"></td>
+            <td th:text="${contract.customer.customerPhone}"></td>
+            <td th:text="${contract.customer.customerEmail}"></td>
+            <td th:text="${contract.service.serviceName}"></td>
+            <td th:text="${contract.contractStartDate}"></td>
+            <td th:text="${contract.contractEndDate}"></td>
+            <td th:text="${contract.contractTotalMoney}"></td>
         </tr>
         </tbody>
     </table>
     <div class="paing">
-        <a th:if="${customerPageList.hasPrevious()}"
-           th:href="@{/customers(page=${customerPageList.number - 1},keyword=${keyword})}">Previous</a>
-        <span th:text="${customerPageList.number + 1 }"></span>/
-        <span th:text="${customerPageList.totalPages }"></span>
-        <a th:if="${customerPageList.hasNext()}"
-           th:href="@{/customers(page=${customerPageList.number + 1},keyword=${keyword})}">Next</a>
+        <a th:if="${contractList.hasPrevious()}"
+           th:href="@{/contract/customerUserService(page=${contractList.number - 1})}">Previous</a>
+        <span th:text="${contractList.number + 1 }"></span>/
+        <span th:text="${contractList.totalPages }"></span>
+        <a th:if="${contractList.hasNext()}"
+           th:href="@{/contract/customerUserService(page=${contractList.number + 1})}">Next</a>
     </div>
     <h2>
         <a href="/home" style="color: cornflowerblue">Back to homepage</a>
@@ -126,7 +102,7 @@
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="post" action="/customers/delete">
+            <form method="post" action="/employees/delete">
                 <input type="hidden" name="idDelete" id="modalDelete">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Delete customer</h5>
