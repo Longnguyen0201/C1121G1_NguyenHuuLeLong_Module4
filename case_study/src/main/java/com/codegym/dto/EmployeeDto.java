@@ -4,7 +4,8 @@ import com.codegym.model.contract.Contract;
 import com.codegym.model.employee.Division;
 import com.codegym.model.employee.EducationDegree;
 import com.codegym.model.employee.Position;
-import com.codegym.model.employee.user.User;
+
+import com.codegym.model.employee.user.AppUser;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -39,7 +40,7 @@ public class EmployeeDto implements Validator {
     private Position position;
     private EducationDegree educationDegree;
     private Division division;
-    private User user;
+    private AppUser user;
     private Set<Contract> contracts;
 
     public EmployeeDto()  {
@@ -133,11 +134,11 @@ public class EmployeeDto implements Validator {
         this.division = division;
     }
 
-    public User getUser() {
+    public AppUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(AppUser user) {
         this.user = user;
     }
 

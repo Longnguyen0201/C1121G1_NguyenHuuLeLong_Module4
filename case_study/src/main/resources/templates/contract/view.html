@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head >
+<head>
     <title>MANAGER</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Courgette|Pacifico:400,700">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -82,51 +82,55 @@
                 <h1>Detailed Contract Information</h1>
                 <div th:align="center">
                     <table id="example" class="table table-striped table-bordered ">
+                        <div th:each="contractDetail : ${contractDetailObj}">
                         <tr>
                             <th>Category</th>
                             <th>Information</th>
                         </tr>
                         <tr>
                             <td>Contract Code</td>
-                            <td th:text="${contractDetailObj.contract.contractCode}"></td>
+                            <td th:text="${contractDetail.contract.contractCode}"></td>
                         </tr>
                         <tr>
                             <td>Customer's Name</td>
-                            <td th:text="${contractDetailObj.contract.customer.customerName}"></td>
+                            <td th:text="${contractDetail.contract.customer.customerName}"></td>
                         </tr>
                         <tr>
                             <td>Staff create</td>
-                            <td th:text="${contractDetailObj.contract.employee.employeeName}"></td>
+                            <td th:text="${contractDetail.contract.employee.employeeName}"></td>
                         </tr>
                         <tr>
                             <td>Name of rental service</td>
-                            <td th:text="${contractDetailObj.contract.service.serviceName}"></td>
+                            <td th:text="${contractDetail.contract.service.serviceName}"></td>
                         </tr>
                         <tr>
                             <td>Lease start date</td>
-                            <td th:text="${contractDetailObj.contract.contractStartDate}"></td>
+                            <td th:text="${contractDetail.contract.contractStartDate}"></td>
                         </tr>
                         <tr>
                             <td>Lease end date</td>
-                            <td th:text="${contractDetailObj.contract.contractEndDate}"></td>
+                            <td th:text="${contractDetail.contract.contractEndDate}"></td>
                         </tr>
                         <tr>
                             <td>Deposits</td>
-                            <td th:text="${contractDetailObj.contract.contractDeposit}"></td>
+                            <td th:text="${contractDetail.contract.contractDeposit}"></td>
                         </tr>
-                        <tr>
-                            <td>Attach service</td>
-                            <td th:text="${contractDetailObj.attachService.attachServiceName}"></td>
-                        </tr>
-                        <tr>
-                            <td>Quantity of Attrach service</td>
-                            <td th:text="${contractDetailObj.quantity}"></td>
-                        </tr>
+<!--                        <div th:each="attachServiceObj: ${contractDetailList}">-->
+                            <tr>
+                                <td>Attach service</td>
+                                <td th:text="${contractDetail.attachService.attachServiceName}"></td>
+                            </tr>
+                            <tr>
+                                <td>Quantity of Attach service</td>
+                                <td th:text="${contractDetail.quantity}"></td>
+                            </tr>
                         <tr>
                             <td>Total Money</td>
-                            <td th:text="${contractDetailObj.contract.contractTotalMoney}"></td>
+                            <td th:text="${contractDetail.contract.contractTotalMoney}"></td>
                         </tr>
+                        </div>
                     </table>
+
                     <div class="text-center">
                         <a href="/contracts" class="btn btn-primary"> Close</a>
                     </div>

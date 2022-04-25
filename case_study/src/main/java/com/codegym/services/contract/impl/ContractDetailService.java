@@ -6,6 +6,8 @@ import com.codegym.services.contract.IContractDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ContractDetailService implements IContractDetailService {
     @Autowired
@@ -16,7 +18,7 @@ public class ContractDetailService implements IContractDetailService {
     }
 
     @Override
-    public ContractDetail findbyContractId(Integer id) {
-        return iContractDetailRepository.findByContract_ContractId(id);
+    public List<ContractDetail> findbyContractId(Integer id) {
+        return iContractDetailRepository.findAllByContract_ContractId(id);
     }
 }

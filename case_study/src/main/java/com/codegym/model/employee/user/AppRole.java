@@ -4,17 +4,17 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Role {
+public class AppRole {
     @Id
     @GeneratedValue
     @Column(name = "role_id", nullable = false)
     private Long roleId;
     @Column(name = "role_name")
     private String roleName;
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "appRole")
     private Set<UserRole> useRoles;
 
-    public Role() {
+    public AppRole() {
     }
 
 

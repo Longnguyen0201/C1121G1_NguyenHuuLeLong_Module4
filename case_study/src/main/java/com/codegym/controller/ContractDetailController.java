@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.lang.reflect.MalformedParameterizedTypeException;
+
 import java.util.List;
 
 @Controller
@@ -36,13 +36,14 @@ public class ContractDetailController {
         ContractDetailDto contractDetailDto = new ContractDetailDto();
         contractDetailDto.setContract(contract);
         modelAndView.addObject("contractDetailDto", contractDetailDto);
-        modelAndView.addObject("contractObj",contract);
-        modelAndView.addObject("attachServiceList",attachServiceList);
+        modelAndView.addObject("contractObj", contract);
+        modelAndView.addObject("attachServiceList", attachServiceList);
         return modelAndView;
     }
+
     @PostMapping(value = "save")
-    public ModelAndView save(@Valid @ModelAttribute ("contractDetailDto") ContractDetailDto contractDetailDto, BindingResult bindingResult){
-        ModelAndView modelAndView ;
+    public ModelAndView save(@Valid @ModelAttribute("contractDetailDto") ContractDetailDto contractDetailDto, BindingResult bindingResult) {
+        ModelAndView modelAndView;
         if (bindingResult.hasFieldErrors()) {
             modelAndView = new ModelAndView("/contract/contractDetail");
             return modelAndView;
@@ -53,11 +54,13 @@ public class ContractDetailController {
         modelAndView = new ModelAndView("redirect:/contracts");
         return modelAndView;
     }
+
     @GetMapping("/view/{id}")
     public ModelAndView showView(@PathVariable Integer id) {
-        ModelAndView modelAndView =new ModelAndView("/contract/view");
-        ContractDetail contractDetail = iContractDetailService.findbyContractId(id);
-        modelAndView.addObject("contractDetailObj",contractDetail);
+        ModelAndView modelAndView = new ModelAndView("/contract/view");
+       List<ContractDetail> contractDetail = iContractDetailService.findbyContractId(id);
+//        List<ContractDetail> AttachUser = iContractDetailService.findby;
+        modelAndView.addObject("contractDetailObj", contractDetail);
         return modelAndView;
     }
 

@@ -40,7 +40,7 @@ public class ContractController {
     private IServiceServices iServiceServices;
 
     @GetMapping(value = {"", "/list"})
-    public String showListContracts(@PageableDefault(value = 2) Pageable pageable,
+    public String showListContracts(@PageableDefault(value = 5) Pageable pageable,
                                    @RequestParam("keyword") Optional<String> keyword,
                                    ModelMap modelMap) {
         String keywordValue = keyword.orElse("");
@@ -92,6 +92,4 @@ public class ContractController {
         modelAndView.addObject("contractList",contractList);
         return modelAndView;
     }
-
-
 }

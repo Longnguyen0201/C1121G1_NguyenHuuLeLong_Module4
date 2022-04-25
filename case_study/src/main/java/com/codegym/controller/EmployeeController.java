@@ -1,19 +1,16 @@
 package com.codegym.controller;
 
-import com.codegym.dto.CustomerDto;
 import com.codegym.dto.EmployeeDto;
-import com.codegym.model.customer.Customer;
-import com.codegym.model.customer.CustomerType;
 import com.codegym.model.employee.Division;
 import com.codegym.model.employee.EducationDegree;
 import com.codegym.model.employee.Employee;
 import com.codegym.model.employee.Position;
-import com.codegym.model.employee.user.User;
+import com.codegym.model.employee.user.AppUser;
 import com.codegym.services.employee.IDivisionService;
 import com.codegym.services.employee.IEducationDegreeService;
 import com.codegym.services.employee.IEmployeeService;
 import com.codegym.services.employee.IPositionService;
-import com.codegym.services.user.IUserService;
+import com.codegym.services.user.IAppUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -42,7 +39,7 @@ public class EmployeeController {
     @Autowired
     private IDivisionService iDivisionService;
     @Autowired
-    private IUserService iUserService;
+    private IAppUserService iUserService;
 
     @ModelAttribute("positionList")
     public List<Position> positionList() {
@@ -61,7 +58,7 @@ public class EmployeeController {
 
 
     @GetMapping(value = {"", "/list"})
-    public String showListEmployee(@PageableDefault(value = 2) Pageable pageable,
+    public String showListEmployee(@PageableDefault(value = 5) Pageable pageable,
                                    @RequestParam("keyword") Optional<String> keyword,
                                    ModelMap modelMap) {
         String keywordValue = keyword.orElse("");
@@ -93,7 +90,7 @@ public class EmployeeController {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
 
-        User user = new User(employeeDto.getEmployeeEmail(), "123456");
+        AppUser user = new AppUser(employeeDto.getEmployeeEmail(), "$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu");
         iUserService.save(user);
         employee.setPosition(position);
         employee.setEducationDegree(educationDegree);
@@ -132,7 +129,7 @@ public class EmployeeController {
         Division division = employeeDto.getDivision();
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
-        User user = new User(employeeDto.getEmployeeEmail(), "123456");
+        AppUser user = new AppUser(employeeDto.getEmployeeEmail(), "123456");
         iUserService.save(user);
         employee.setPosition(position);
         employee.setEducationDegree(educationDegree);

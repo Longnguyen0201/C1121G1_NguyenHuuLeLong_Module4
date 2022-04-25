@@ -44,7 +44,7 @@ public class CustomerController {
 
 
     @GetMapping(value = {"", "/list"})
-    public String showListCustomer(@PageableDefault(value = 2) Pageable pageable,
+    public String showListCustomer(@PageableDefault(value = 5) Pageable pageable,
                                    @RequestParam("keyword") Optional<String> keyword,
                                    ModelMap modelMap) {
         String keywordValue = keyword.orElse("");

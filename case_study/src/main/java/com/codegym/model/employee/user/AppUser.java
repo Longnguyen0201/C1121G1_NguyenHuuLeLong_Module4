@@ -6,22 +6,33 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class User {
+
+public class AppUser {
     @Id
-    private String username;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idUser;
+    private String userName;
     private String password;
     @OneToOne(mappedBy = "user")
     private Employee employee;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "appUser")
     private Set<UserRole> useRoles;
 
-    public User() {
+    public AppUser() {
     }
 
 
-    public User(String username, String password) {
-        this.username = username;
+    public AppUser(String userName, String password) {
+        this.userName = userName;
         this.password = password;
+    }
+
+    public Integer getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
     }
 
     public Employee getEmployee() {
@@ -40,12 +51,12 @@ public class User {
         this.useRoles = useRoles;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String userName) {
-        this.username = userName;
+    public void setUserName(String username) {
+        this.userName = username;
     }
 
     public String getPassword() {

@@ -1,7 +1,8 @@
 package com.codegym.model.employee;
 
 import com.codegym.model.contract.Contract;
-import com.codegym.model.employee.user.User;
+import com.codegym.model.employee.user.AppUser;
+//import com.codegym.model.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -44,8 +45,8 @@ public class Employee {
     private Division division;
 
     @OneToOne
-    @JoinColumn(name = "username",referencedColumnName = "username")
-    private User user;
+    @JoinColumn(name = "idUser",referencedColumnName = "idUser")
+    private AppUser user;
 
     @OneToMany(mappedBy = "employee")
     private Set<Contract> contracts;
@@ -150,11 +151,11 @@ public class Employee {
         this.contracts = contracts;
     }
 
-    public User getUser() {
+    public AppUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(AppUser user) {
         this.user = user;
     }
 }
